@@ -19,7 +19,7 @@ namespace WBV.DataAccess
 
         private IDataConnector _dataConnector;
 
-        public orm(IDataConnector dc) 
+        private orm(IDataConnector dc) 
         {
             _dataConnector = dc;
         }

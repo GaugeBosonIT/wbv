@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WBV", "WBV\WBV.csproj", "{37B772E9-EE51-4135-9E89-F70EB1BBD06B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WBV_tests", "WBV_tests\WBV_tests.csproj", "{D6C9CE02-B712-4F12-AD6A-93BE5538CEAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{37B772E9-EE51-4135-9E89-F70EB1BBD06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37B772E9-EE51-4135-9E89-F70EB1BBD06B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37B772E9-EE51-4135-9E89-F70EB1BBD06B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6C9CE02-B712-4F12-AD6A-93BE5538CEAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6C9CE02-B712-4F12-AD6A-93BE5538CEAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6C9CE02-B712-4F12-AD6A-93BE5538CEAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6C9CE02-B712-4F12-AD6A-93BE5538CEAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

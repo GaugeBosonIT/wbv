@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>143287ce-285e-4340-856e-70e15bd56dc5</ProjectGuid>
+    <ProjectGuid>{D6C9CE02-B712-4F12-AD6A-93BE5538CEAF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WBV_tests</RootNamespace>
