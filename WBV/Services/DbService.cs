@@ -9,12 +9,12 @@ using System.IO;
 using System.Collections;
 using System.Configuration;
 using System.Xml;
-using WBV.DataAccess;
+using WBV.Interfaces;
 
 
 namespace WBV.DataAccess
 {
-    public class DataConnector : IDataConnector
+    public class DataService : IData
     {
 
         public SqlConnection getPooledConnection(SqlConnection sConn)
@@ -42,6 +42,7 @@ namespace WBV.DataAccess
             }
             catch (Exception exp)
             {
+
             }
             return (blnRetVal);
         }
