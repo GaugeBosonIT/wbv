@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Helpers\LoginStatus.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Services\DbService.cs" />
     <Compile Include="Interfaces\IData.cs" />

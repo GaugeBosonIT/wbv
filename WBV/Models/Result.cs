@@ -27,7 +27,7 @@ namespace WBV.Models
     public class User
     {
         [XmlAttribute]
-        public string access_token { get; set; }
+        public virtual string access_token { get; set; }
         [XmlAttribute]
         public string user_token { get; set; }
         [XmlAttribute]
