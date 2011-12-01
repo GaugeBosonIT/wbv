@@ -20,8 +20,8 @@ namespace WBV_tests
         public void index_returns_view()
         {
              //arrange
-            var mockHttpContext = new Mock<HttpContext>();
-            var mockContext = new Mock<ISession>(mockHttpContext);
+            var mockHttpContext = new Mock<HttpContextBase>();
+            var mockContext = new Mock<ISession>();
             var mockdata = new Mock<IData>();
             var c = new HomeController(mockContext.Object, mockdata.Object);
             //act
@@ -34,8 +34,8 @@ namespace WBV_tests
          public void index_returns_token()
          {
              //arrange
-             var mockHttpContext = new Mock<HttpContext>();
-             var mockContext = new Mock<ISession>(mockHttpContext);
+             var mockHttpContext = new Mock<HttpContextBase>();
+             var mockContext = new Mock<ISession>();
              var mockdata = new Mock<IData>();
              var c = new HomeController(mockContext.Object, mockdata.Object);
              //act

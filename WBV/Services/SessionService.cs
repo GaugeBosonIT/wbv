@@ -9,9 +9,9 @@ namespace WBV.Services
 {
     public class SessionService : ISession
     {
-        public HttpContext Context { get; set; }
+        public HttpContextBase Context { get; set; }
 
-        public SessionService(HttpContext context)
+        public SessionService(HttpContextBase context)
         {
             this.Context = context;
         }
@@ -25,7 +25,6 @@ namespace WBV.Services
                    return cookie.Value.ToString();
                else
                    return "";
-           
            
                 }
             set 

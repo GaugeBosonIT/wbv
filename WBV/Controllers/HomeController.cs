@@ -6,12 +6,15 @@ using System.Web.Mvc;
 using WBV.Interfaces;
 using WBV.DataMapper;
 using WBV.Models;
+using log4net;
+using log4net.Config;
+
 
 namespace WBV.Controllers
 {
     public class HomeController : Controller
     {
-        
+        private static readonly ILog log = LogManager.GetLogger("HomeController");
         public ISession _session;
         public IData _data;
         public HomeController(ISession session, IData data)
@@ -32,10 +35,11 @@ namespace WBV.Controllers
             string accessToken;
             if (_session.user == null)
             {
-                if (_session.userToken == "")
+                if (_session.userToken == ""  || _session.userToken == null)
                 {
                     //this bloke needs to login before we are going to set any cookie.
                     accessToken = "NOTOKEN";
+                    log.Info("Some user with no token");
                 }
                 else
                 {

@@ -44,10 +44,11 @@ namespace WBV
 
         private void RegisterDependencyResolver()
         {
+            HttpContextBase context = new HttpContextWrapper(HttpContext.Current);
             var kernel = new StandardKernel();
             kernel.Bind<IData>().To<DataService>();
             kernel.Bind<ISession>().To<SessionService>()
-                                   .WithConstructorArgument("context",ninjectContext=>HttpContext.Current);
+                                   .WithConstructorArgument("context", ninjectContext => context);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     } 
