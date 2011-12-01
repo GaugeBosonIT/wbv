@@ -24,10 +24,12 @@ namespace WBV.Models
     
 
     [Serializable]
-    public class User : IUser
+    public class User
     {
         [XmlAttribute]
-        public string accessToken { get; set; }
+        public string access_token { get; set; }
+        [XmlAttribute]
+        public string user_token { get; set; }
         [XmlAttribute]
         public string name { get; set; }
         [XmlAttribute]

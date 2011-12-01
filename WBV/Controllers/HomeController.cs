@@ -4,43 +4,58 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WBV.Interfaces;
+using WBV.DataMapper;
+using WBV.Models;
 
 namespace WBV.Controllers
 {
     public class HomeController : Controller
     {
-
-        private ISession _session;
-
-        public HomeController(ISession session)
+        
+        public ISession _session;
+        public IData _data;
+        public HomeController(ISession session, IData data)
         {
             _session = session;
-        }       
+            _data = data;
+        }
         public ActionResult Index()
         {
-            if (_session.Context.Session["user"] == null)
-            {
-                var userToken = _session.Context.Request.Cookies["userToken"] ;
-                if (userToken == null)
-                {
-                    //this bloke needs to login before we are going to set any cookie.
 
-                }
-                else
-                { 
-                    //get the  user into the session from their cookie
+            ViewBag.AccessToken = accessToken();
 
-                }
-
-
-
-
-            }
-            
-            ViewBag.AccessToken = "NOTOKEN";
             return View("Index");
         }
 
-      
+        public string accessToken()
+        {
+            string accessToken;
+            if (_session.user == null)
+            {
+                if (_session.userToken == "")
+                {
+                    //this bloke needs to login before we are going to set any cookie.
+                    accessToken = "NOTOKEN";
+                }
+                else
+                {
+                    //get the  user into the session from their cookie
+                    var user = new User();
+                    user.user_token = _session.userToken;
+                    var o = new orm(_data);
+                    _session.user = (User)o.GetObject(user);
+                    accessToken = _session.user.access_token;
+
+                }
+
+            }
+            else
+            {
+                accessToken = _session.userToken;
+            }
+
+            return accessToken;
+        }
+
     }
 }

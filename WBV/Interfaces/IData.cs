@@ -2,7 +2,7 @@
 using System.Xml;
 namespace WBV.Interfaces
 {
-    interface IData
+    public interface IData
     {
          XmlDocument execStoredProc(string strProcName, XmlDocument strParameters);
     }

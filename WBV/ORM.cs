@@ -9,17 +9,17 @@ using System.Xml.Xsl;
 using System.IO;
 using System.Xml;
 using System.Text;
-using WBV.DataAccess;
+using WBV.Interfaces;
 
-namespace WBV.DataAccess
+namespace WBV.DataMapper
 {
     public class orm
     {
 
 
-        private IDataConnector _dataConnector;
+        private IData _dataConnector;
 
-        private orm(IDataConnector dc) 
+        public orm(IData dc) 
         {
             _dataConnector = dc;
         }

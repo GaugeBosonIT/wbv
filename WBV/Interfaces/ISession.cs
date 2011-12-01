@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Web;
+using WBV.Models;
 namespace WBV.Interfaces
 {
-    interface ISession
+    public interface ISession
     {
-        HttpContextBase Context { get; set; }
+        HttpContext Context { get; set; }
+
+        string userToken { get; set; }
+
+        User user { get; set; }
+
     }
 }
