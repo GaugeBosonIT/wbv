@@ -12,11 +12,13 @@ namespace WBV.Services
     public class SessionService : ISession
     {
         public HttpContextBase _context { get; set; }
+      
         private static readonly ILog log = LogManager.GetLogger("SessionService");
+
         public SessionService(HttpContextBase context)
         {
             _context = context;
-   
+
         }
 
         public string userToken
