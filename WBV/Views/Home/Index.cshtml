@@ -64,8 +64,9 @@
     <div id="sendconfirmpage" data-title="Ziftly - Send the Gift"  class="container bodypage">
     <div class="header clearfix"><h1>Send the Gift</h1></div>
     <div class="content">
-      <h1 style="text-align:center">enter an email address!</h1>
-      <div style="margin-top:4em;text-align:center"><input type="email" placeholder="email address" name="email" id="rcpt-emailaddress" value-"" /></div>
+      <ul style="margin-top:2em;" id="gift-info" class="listview"></ul>
+      <h1 style="text-align:center;margin-top:2em;">enter an email address!</h1>
+      <div style="margin-top:1em;text-align:center"><input type="email" placeholder="email address" name="email" id="rcpt-emailaddress" value-"" /></div>
       <div style="margin-top:4em">
         <p><button class="first last sendgiftbutton">send now</button></p>
       </div>
@@ -89,4 +90,18 @@
   <a class="listbutton">
     <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= pic_square %>"/><%= name %> (<%= birthday_date %>)</span><span class="rarrow">&raquo</span>
   </a>
+</script>
+<script type="text/template" id="gift-display-template">
+    <li><h1>Give</h1></li>
+    <li>
+      <a class="listbutton">
+          <span class="label first last"><%= product.name %></span>
+      </a>
+    </li>
+    <li><h1>to</h1></li>
+    <li>
+      <a class="listbutton">
+          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= recipient.pic_square %>"/><%= recipient.name %> (<%= recipient.birthday_date %>)</span>
+      </a>
+    </li>
 </script>
