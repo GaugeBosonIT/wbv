@@ -171,11 +171,11 @@ ziftly = function (fbaccessToken) {
     , friendSelected: function (recipient_model) {
       this.gift.recipient = recipient_model;
       this.sendconfirm = new SendConfirmView({ model: new SendConfirmModel({ gift: this.gift }) });
-      listRouter.navigate("send");
+      listRouter.navigate("send", true);
     }
     , giftSelected: function (product_model) {
       this.gift.product = product_model;
-      listRouter.navigate("friend");
+      listRouter.navigate("friend", true);
     }
     , render: function () {
       if (this.auth_handler.isLoggedIn()) {
@@ -190,7 +190,10 @@ ziftly = function (fbaccessToken) {
     , fbLogin: function () {
       var _t = this;
       this.auth_handler.addFBDeferred(function () {
-        FB.login(function (response) { _t.auth_handler.setFBUser(response.session); _t.render(); }, { scope: 'email,publish_stream,user_birthday,friends_birthday' });
+        FB.login(function (response) {
+          _t.auth_handler.setFBUser(response.session);
+          _t.render();
+        }, { perms: 'email, publish_stream, offline_access, user_birthday, friends_birthday' });
       });
     }
   });
