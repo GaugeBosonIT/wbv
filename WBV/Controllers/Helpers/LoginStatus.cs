@@ -32,8 +32,8 @@ namespace WBV.Controllers.Helpers
                         var user = new User();
                         user.user_token = _session.userToken;
                         var o = new orm(_data);
-                        _session.user = (User)o.GetObject(user);
-                        _accessToken = _session.user.access_token;
+                        _session.user = o.GetObject(user) as User;
+                        return _session.user.access_token;
                     }
                 }
                 else

@@ -57,18 +57,48 @@ namespace WBV.Services
         {
             get
             {
-                if (_context.Session != null)
+                try
                 {
-                    return _context.Session["user"] as User;
+                    if (_context.Session != null)
+                    {
+                        return _context.Session.GetDataFromSession<User>("user"); ;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
-                {
-                    return null;
+                catch (Exception exp)
+                { 
+                    log.Error(exp.ToString());
+                    throw;
                 }
             }
-            set { _context.Session["user"] = value; }
+            set {
+                try
+                {
+                    _context.Session.SetDataInSession("user", value);
+    
+                }
+                catch (Exception exp)
+                {
+                    log.Error(exp.ToString());
+                }
+            
+                }
         }
 
+   }
+    public static class SessionExtensions
+    {
+        public static T GetDataFromSession<T>(this HttpSessionStateBase session, string key)
+        {
+            return (T)session[key];
+        }
 
+        public static void SetDataInSession(this HttpSessionStateBase session, string key, object value)
+        {
+            session[key] = value;
+        }
     }
 }
