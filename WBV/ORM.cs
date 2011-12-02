@@ -20,13 +20,13 @@ namespace WBV.DataMapper
         private static readonly ILog log = LogManager.GetLogger("orm");
         private IData _dataConnector;
 
-        public orm(IData dc) 
+        public orm(IData dc)
         {
             _dataConnector = dc;
         }
-        
+
         //set object return bool. get take object with only param attribute and returns full object
-        public  Object GetObject(Object o)
+        public Object GetObject(Object o)
         {
             try
             {
@@ -39,10 +39,10 @@ namespace WBV.DataMapper
                 log.Error(exp);
                 throw;
             }
-            
+
         }
 
-        public  ResultObject SetObject(Object o)
+        public ResultObject SetObject(Object o)
         {
             try
             {
@@ -56,9 +56,9 @@ namespace WBV.DataMapper
                 log.Error(exp);
                 throw;
             }
-            }
+        }
 
-        private  XmlDocument SetXML(Object o)
+        private XmlDocument SetXML(Object o)
         {
             try
             {
@@ -66,14 +66,14 @@ namespace WBV.DataMapper
                 r = _dataConnector.execStoredProc("set_" + o.GetType().Name, DeserialiseP(o));
                 return r;
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 log.Error(exp);
                 throw;
             }
         }
 
-        private  XmlDocument GetXML(Object o)
+        private XmlDocument GetXML(Object o)
         {
             try
             {
