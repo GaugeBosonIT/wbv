@@ -21,7 +21,7 @@ namespace WBV.Controllers
 
         public HomeController(ISession session, IData data)
         {
-            _session = session;
+            _session = session;  
             _data = data;
         }
         public ActionResult Index()
@@ -32,8 +32,8 @@ namespace WBV.Controllers
             }
             catch (Exception exp)
             { 
-                log.Error(exp);
-                throw; 
+                log.Error(exp);   
+                throw;  
             }
             return View("Index");
         }

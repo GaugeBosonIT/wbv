@@ -11,11 +11,12 @@ namespace WBV.Services
 {
     public class SessionService : ISession
     {
-        public HttpContextBase Context { get; set; }
+        public HttpContextBase _context { get; set; }
         private static readonly ILog log = LogManager.GetLogger("SessionService");
         public SessionService(HttpContextBase context)
         {
-            this.Context = context;
+            _context = context;
+   
         }
 
         public string userToken
@@ -23,7 +24,7 @@ namespace WBV.Services
            get {
                try
                {
-                   var cookie = Context.Request.Cookies["userToken"];
+                   var cookie = _context.Request.Cookies["userToken"];
                    if (cookie != null)
                        return cookie.Value.ToString();
                    else
@@ -42,7 +43,7 @@ namespace WBV.Services
                         HttpCookie cookie = new HttpCookie("userToken");
                         cookie.Value = value;
                         cookie.Expires = DateTime.Now.AddYears(1);
-                        Context.Response.Cookies.Add(cookie);
+                        _context.Response.Cookies.Add(cookie);
                     }
                     catch(Exception exp) 
                     {
@@ -54,8 +55,18 @@ namespace WBV.Services
         }
         public User user
         {
-            get { return Context.Session["user"] as User; }
-            set { Context.Session["user"] = value; }
+            get
+            {
+                if (_context.Session != null)
+                {
+                    return _context.Session["user"] as User;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set { _context.Session["user"] = value; }
         }
 
 

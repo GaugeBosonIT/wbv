@@ -40,7 +40,6 @@ namespace WBV.Controllers
                 var returned_user = o.SetObject(user).o as User;
                 _session.user = returned_user;
                 _session.userToken = returned_user.user_token;
-
                 return "\"Result\":{\"status\":0";
             }
             catch (Exception exp)

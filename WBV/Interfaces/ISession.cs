@@ -5,7 +5,7 @@ namespace WBV.Interfaces
 {
     public interface ISession
     {
-        HttpContextBase Context { get; set; }
+        HttpContextBase _context { get; set; }
 
         string userToken { get; set; }
 
