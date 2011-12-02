@@ -3,6 +3,90 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="loadingbackground hidden loading"></div>
+<div class="loading loadingpopup hidden" id="loading_popup">
+  <div class="closing_button"><span>x</span></div>
+  <div class="content"></div>
+</div>
 
-@ViewBag.AccessToken
+<div id="root">
+  <div class="container active-page" id="splashscreen">
+    <div class="header clearfix"><h1>Presenting</h1></div>
+    <div class="content">Ziftly</div>
+    <div class="footer">
+        gifting app
+    </div>
+  </div>
+  <div id="loginpage" data-title="Ziftly - Login"  class="container bodypage">
+    <div class="header clearfix"><h1>Login</h1></div>
+    <div class="content">
+      <h1 style="text-align:center">Start giving a gift right now!</h1>
+      
+      <div style="margin-top:4em;text-align:center">You need to login with facebook!</div>
+      <div style="margin-top:4em">
+        <p><button class="first last fbloginbutton">Login</button></p>
+      </div>
+    </div>
+    <div class="footer">
+        gifting app
+    </div>
+  </div>
+  <div id="selectgiftpage" data-title="Ziftly - Select Gift"  class="container bodypage">
+    <div class="header clearfix"><h1>Select Gift</h1></div>
+    <div class="content">
+      <h1 style="text-align:center">Select gift to give!</h1>
+      
+      <div style="margin-top:4em;text-align:center">Pick any one from below:</div>
+      <ul class="listview" id="giftsuggestionslist-items">
+        <li>LOADING!!!!!!!!!!</li>
+      </ul>
+    </div>
+    <div class="footer">
+        gifting app
+    </div>
+  </div>
+  
+  <div id="selectrcptpage" data-title="Ziftly - Select Recipient"  class="container bodypage">
+    <div class="header clearfix"><h1>Select Recipient</h1></div>
+    <div class="content">
+      <h1 style="text-align:center">Select person to be gifted!</h1>
+      
+      <div style="margin-top:4em;text-align:center">Pick any one from below:</div>
+      <ul class="listview" id="recipientlist-items">
+        <li>LOADING!!!!!!!!!!</li>
+      </ul>
+    </div>
+    <div class="footer">
+        gifting app
+    </div>
+  </div>
+
+    <div id="sendconfirmpage" data-title="Ziftly - Send the Gift"  class="container bodypage">
+    <div class="header clearfix"><h1>Send the Gift</h1></div>
+    <div class="content">
+      <h1 style="text-align:center">enter an email address!</h1>
+      <div style="margin-top:4em;text-align:center"><input type="email" placeholder="email address" name="email" id="rcpt-emailaddress" value-"" /></div>
+      <div style="margin-top:4em">
+        <p><button class="first last sendgiftbutton">send now</button></p>
+      </div>
+    </div>
+    <div class="footer">
+        gifting app
+    </div>
+  </div>
+
+
+  
+
+</div>
+
+<script type="text/template" id="gift-listitem-template">
+  <a class="listbutton">
+    <span class="label first last"><%= name %></span><span class="rarrow">&raquo</span>
+  </a>
+</script>
+<script type="text/template" id="friend-listitem-template">
+  <a class="listbutton">
+    <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= pic_square %>"/><%= name %> (<%= birthday_date %>)</span><span class="rarrow">&raquo</span>
+  </a>
+</script>
