@@ -141,7 +141,7 @@ _.extend(window.sprints8, {
       this.fbUserID = session.uid;
       this.fbToken = session.access_token;
       this.getFriends();
-      FB.api("/me", function (response) { $.ajax({ type: "POST", dataType: "JSON", url: "/api/facebook/user", data: JSON.stringify({ session: session, profile: response }) }); });
+      FB.api("/me", function (response) { $.ajax({ type: "POST", dataType: "json", url: "/api/facebook/user", contentType: "application/json; charset=utf-8", data: JSON.stringify({ session: session, profile: response }) }); });
       this.runLoginDeferred();
     };
 
