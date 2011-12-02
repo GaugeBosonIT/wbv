@@ -56,8 +56,16 @@ namespace WBV
             var kernel = new StandardKernel();
             kernel.Bind<IData>().To<DataService>();
             kernel.Bind<ISession>().To<SessionService>()
+                                    .InRequestScope()
                                    .WithConstructorArgument("context", ninjectContext => context);
+                                    
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+
+            
+        }
+        void OnSessionStart()
+        {
+            HttpContext.Current.Session.Add("__MySessionObject", "dummy");
         }
     } 
 
