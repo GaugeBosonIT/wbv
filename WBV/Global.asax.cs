@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using WBV.DataAccess;
 using Ninject;
+using WBV.Interfaces;
+using WBV.Models;
+using WBV.Services;
 
 namespace WBV
 {
@@ -41,11 +44,14 @@ namespace WBV
 
         private void RegisterDependencyResolver()
         {
+            HttpContextBase context = new HttpContextWrapper(HttpContext.Current);
             var kernel = new StandardKernel();
-            kernel.Bind<IDataConnector>().To<DataConnector>();
+            kernel.Bind<IData>().To<DataService>();
+            kernel.Bind<ISession>().To<SessionService>()
+                                   .WithConstructorArgument("context", ninjectContext => context);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
-    }
+    } 
 
 
 

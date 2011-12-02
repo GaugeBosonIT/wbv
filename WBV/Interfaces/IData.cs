@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Xml;
-namespace WBV.DataAccess
+namespace WBV.Interfaces
 {
-    interface IDataConnector
+    public interface IData
     {
          XmlDocument execStoredProc(string strProcName, XmlDocument strParameters);
     }

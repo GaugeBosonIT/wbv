@@ -9,22 +9,32 @@ using System.IO;
 using System.Collections;
 using System.Configuration;
 using System.Xml;
-using WBV.DataAccess;
+using WBV.Interfaces;
+using log4net;
+using log4net.Config;
 
 
 namespace WBV.DataAccess
 {
-    public class DataConnector : IDataConnector
+    public class DataService : IData
     {
-
+        private static readonly ILog log = LogManager.GetLogger("DataService");
         public SqlConnection getPooledConnection(SqlConnection sConn)
         {
-            System.Data.SqlClient.SqlConnection newcon =
-            new System.Data.SqlClient.SqlConnection();
-            sConn.ConnectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
-            sConn.Open();
-            sConn.Close();
-            return (sConn);
+            try
+            {
+                System.Data.SqlClient.SqlConnection newcon =
+                new System.Data.SqlClient.SqlConnection();
+                sConn.ConnectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+                sConn.Open();
+                sConn.Close();
+                return (sConn);
+            }
+            catch (Exception exp)
+            {
+                log.Error(exp);
+                throw;
+            }
         }
 
         public bool closeConnection(SqlConnection sConn)
@@ -42,6 +52,8 @@ namespace WBV.DataAccess
             }
             catch (Exception exp)
             {
+                log.Error(exp);
+                throw;
             }
             return (blnRetVal);
         }
@@ -66,6 +78,7 @@ namespace WBV.DataAccess
             }
             catch (Exception exp)
             {
+                log.Error(exp);
                 Result.LoadXml(exp.ToString());
                 sConn.Close();
             }
