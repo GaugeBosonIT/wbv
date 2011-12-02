@@ -31,9 +31,9 @@ namespace WBV.Controllers
                 ViewBag.AccessToken = LoginStatus.accessToken(_session, _data);
             }
             catch (Exception exp)
-            {
+            { 
                 log.Error(exp);
-                throw;
+                throw; 
             }
             return View("Index");
         }

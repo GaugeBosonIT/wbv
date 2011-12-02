@@ -61,9 +61,10 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllerTest.cs" />
+    <Compile Include="HomeControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests.cs" />
+    <Compile Include="FacebookControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
