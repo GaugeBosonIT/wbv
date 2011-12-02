@@ -137,8 +137,11 @@ ziftly = function (fbaccessToken) {
   window.SendConfirmView = Backbone.View.extend({
     el: $('#sendconfirmpage')
     , events: { "click .sendgiftbutton": "sendGift" }
+    , template: _.template($('#gift-display-template').html())
+
     , render: function () {
       this.$("#rcpt-emailaddress").val("");
+      this.$("#gift-info").html(this.template(this.model.get("gift")));
       App.navigator.to(4);
     }
     , sendGift: function () {
@@ -169,12 +172,12 @@ ziftly = function (fbaccessToken) {
 
     }
     , friendSelected: function (recipient_model) {
-      this.gift.recipient = recipient_model;
+      this.gift.recipient = recipient_model.toJSON();
       this.sendconfirm = new SendConfirmView({ model: new SendConfirmModel({ gift: this.gift }) });
       listRouter.navigate("send", true);
     }
     , giftSelected: function (product_model) {
-      this.gift.product = product_model;
+      this.gift.product = product_model.toJSON();
       listRouter.navigate("friend", true);
     }
     , render: function () {
@@ -209,10 +212,12 @@ ziftly = function (fbaccessToken) {
       App.reset();
     }
     , selectFriendView: function () {
-      App.friendsuggestions.render();
+      if (App.auth_handler.isLoggedIn()) App.friendsuggestions.render();
+      else listRouter.navigate("home", true);
     }
     , sendView: function () {
-      App.sendconfirm.render();
+      if (App.sendconfirm) App.sendconfirm.render();
+      else listRouter.navigate("home", true);
     }
   });
   listRouter = new ListRouter;
