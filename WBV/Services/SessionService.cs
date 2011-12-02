@@ -54,7 +54,7 @@ namespace WBV.Services
         }
         public User user
         {
-            get { return (User)Context.Session["user"]; }
+            get { return Context.Session["user"] as User; }
             set { Context.Session["user"] = value; }
         }
 
