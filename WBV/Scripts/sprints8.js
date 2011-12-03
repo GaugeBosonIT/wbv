@@ -101,10 +101,10 @@ _.extend(window.sprints8, {
     };
   }
 
-  , FBAuthHandler: function (app_id, fbRootNode) {
+  , FBAuthHandler: function (app_id, fbRootNode, access_token) {
     this.fbDoneLoading = false;
     this.fbUserID = null;
-    this.fbToken = null;
+    this.fbToken = access_token;
     this.fbFriends = null;
     this.isLoggedIn = function () {
       return this.fbToken && this.fbToken !== 'NOTOKEN';
@@ -116,12 +116,11 @@ _.extend(window.sprints8, {
             console.log(response);
           }
         };
-
     var loadDefs = new sprints8.deferreds(function () { return this.fbDoneLoading }, this);
     this.addFBDeferred = loadDefs.add;
     this.runFBDeferred = loadDefs.run;
 
-    var loginDefs = new sprints8.deferreds(this.isLoggedIn, this);
+    var loginDefs = new sprints8.deferreds(function () { return this.fbDoneLoading && this.isLoggedIn }, this);
     this.addLoginDeferred = loginDefs.add;
     this.runLoginDeferred = loginDefs.run;
 
@@ -136,20 +135,34 @@ _.extend(window.sprints8, {
       }
       else if (cb) cb(_t.fbFriends);
     };
+    this.sendUserToServer = function (response, session) {
+      $.ajax({
+        type: "POST"
+        , dataType: "json"
+        , url: "/api/facebook/user"
+        , contentType: "application/json; charset=utf-8"
+        , data: JSON.stringify({ session: session, profile: response })
+      });
+    }
 
     this.setFBUser = function (session) {
       this.fbUserID = session.uid;
       this.fbToken = session.access_token;
       this.getFriends();
-      FB.api("/me", function (response) { $.ajax({ type: "POST", dataType: "json", url: "/api/facebook/user", contentType: "application/json; charset=utf-8", data: JSON.stringify({ session: session, profile: response }) }); });
+      FB.api("/me", function(response){this.sendUserToServer(response, session)});
       this.runLoginDeferred();
     };
 
     window.fbAsyncInit = function () {
       var channelUrl = document.location.protocol + '//' + document.location.host + "/Scripts/channel.html";
       FB.init({ appId: app_id, status: true, cookie: true, xfbml: false, channelUrl: channelUrl });
-      FB.Event.subscribe("auth.sessionChange", _onSessionChange);
       _t.fbDoneLoading = true;
+      var fb = FB.getAccessToken;
+      if (_t.isLoggedIn()) {
+        FB.getAccessToken = function () { return fb() || _t.fbToken }
+        _t.runLoginDeferred();
+      }
+      FB.Event.subscribe("auth.sessionChange", _onSessionChange);
       _t.runFBDeferred();
     };
     var e = document.createElement('script');

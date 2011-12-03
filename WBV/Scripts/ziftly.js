@@ -181,7 +181,7 @@ ziftly = function (fbaccessToken) {
     , initialize: function () {
       var _t = this;
       this.navigator = new sprints8.Navigator();
-      this.auth_handler = new sprints8.FBAuthHandler('249207335140842', "fb-root");
+      this.auth_handler = new sprints8.FBAuthHandler("249207335140842", "fb-root", fbaccessToken);
 
       this.giftsuggestions = new GiftSuggestionListView({ model: new GiftSuggestionList({}) });
       this.giftsuggestions.model.fetch();
