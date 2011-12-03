@@ -44,9 +44,6 @@
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Web.Mvc">
-      <HintPath>..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -78,11 +75,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\NinjectMVC3.cs" />
+    <Compile Include="Controllers\GiftController.cs" />
     <Compile Include="Controllers\Helpers\LoginStatus.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Models\Facebook.cs" />
+    <Compile Include="Models\Gift.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Services\DbService.cs" />
     <Compile Include="Interfaces\IData.cs" />
     <Compile Include="ORM.cs" />

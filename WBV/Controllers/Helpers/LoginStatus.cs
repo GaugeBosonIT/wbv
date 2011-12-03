@@ -38,7 +38,7 @@ namespace WBV.Controllers.Helpers
                 }
                 else
                 {
-                    _accessToken = _session.userToken;
+                    _accessToken = _session.user.access_token;
                 }
             }
             catch (Exception exp)

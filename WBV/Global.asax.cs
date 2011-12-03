@@ -37,9 +37,6 @@ namespace WBV
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
-
-
         }
 
         protected void Application_Start()
@@ -52,12 +49,12 @@ namespace WBV
 
         private void RegisterDependencyResolver()
         {
-            HttpContextBase context = new HttpContextWrapper(HttpContext.Current);
+            
             var kernel = new StandardKernel();
             kernel.Bind<IData>().To<DataService>();
             kernel.Bind<ISession>().To<SessionService>()
                                     .InRequestScope()
-                                   .WithConstructorArgument("context", ninjectContext => context);
+                                   .WithConstructorArgument("context", ninjectContext => new HttpContextWrapper(HttpContext.Current));
                                     
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
 

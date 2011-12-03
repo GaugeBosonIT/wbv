@@ -34,7 +34,7 @@ namespace WBV.Controllers
                 var user = new User();
                 user.access_token = facebookuser.session.access_token;
                 user.name = facebookuser.profile.name;
-                user.facebookId = facebookuser.profile.id;
+                user.facebook_id = facebookuser.profile.id;
                 var o = new orm(_data);
                 var returned_user = o.SetObject(user).o as User;
                 _session.user = returned_user;
