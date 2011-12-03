@@ -3,7 +3,13 @@ ziftly = function (fbaccessToken) {
   /* -------------------------------------------- ------ -------------------------------------------- */
   /* -------------------------------------------- MODELS -------------------------------------------- */
   /* -------------------------------------------- ------ -------------------------------------------- */
-  window.SendConfirmModel = Backbone.Model.extend({ defaults: function () { return { name: 'no email' }; } });
+  window.SendConfirmModel = Backbone.Model.extend({
+    url: function () { return "/api/gift/send" }
+    , validate: function (attrs) {
+      if (!window.sprints8.isEmail(this.get("gift").recipient.email))
+        return "email not correct";
+    }
+  });
 
 
   window.FBFriend = Backbone.Model.extend({ defaults: function () { return { name: 'FBFriend 1' }; } });
@@ -83,8 +89,8 @@ ziftly = function (fbaccessToken) {
     }
     , rcptSelected: function (itemmodel) {
       if (itemmodel.get("selected")) {
+        itemmodel.unset("selected", { silent: true });
         this.trigger("RcptSelected", itemmodel);
-        itemmodel.set({ selected: false }, { silent: true });
       }
     }
   });
@@ -125,8 +131,8 @@ ziftly = function (fbaccessToken) {
       $("#giftsuggestionslist-items").html(widgetlist);
     }
     , itemSelected: function (itemmodel) {
+      itemmodel.unset("selected", { silent: true });
       this.trigger("GiftSelected", itemmodel);
-      itemmodel.set({ selected: false }, { silent: true });
     }
   });
 
@@ -138,14 +144,29 @@ ziftly = function (fbaccessToken) {
     el: $('#sendconfirmpage')
     , events: { "click .sendgiftbutton": "sendGift" }
     , template: _.template($('#gift-display-template').html())
-
     , render: function () {
       this.$("#rcpt-emailaddress").val("");
       this.$("#gift-info").html(this.template(this.model.get("gift")));
       App.navigator.to(4);
     }
     , sendGift: function () {
-      console.log(this.model.gift);
+      var _t = this;
+      this.model.get('gift').recipient.email = this.$("#rcpt-emailaddress").val();
+      this.model.save({}, { error: function (model, error) {
+        _t.$("#rcpt-emailaddress").after('<span class="error">' + error + '</span>')
+      }, success: function () {
+        $(".error", _t.$("#rcpt-emailaddress").parentNode).remove();
+        listRouter.navigate("sent", true);
+      }
+      });
+    }
+  });
+
+  window.SentSuccessView = Backbone.View.extend({
+    el: $('#sentsuccesspage')
+    , render: function (gift) {
+      this.$(".recipientemail").html(this.email);
+      App.navigator.to(5);
     }
   });
 
@@ -180,6 +201,9 @@ ziftly = function (fbaccessToken) {
       this.gift.product = product_model.toJSON();
       listRouter.navigate("friend", true);
     }
+    , showSuccess: function () {
+      new SentSuccessView().render(this.gift);
+    }
     , render: function () {
       if (this.auth_handler.isLoggedIn()) {
         this.giftsuggestions.render();
@@ -205,6 +229,7 @@ ziftly = function (fbaccessToken) {
   ListRouter = Backbone.Router.extend({
     routes: { "home": "resetView"
             , "send": "sendView"
+            , "sent": "sentView"
             , "friend": "selectFriendView"
             , "*other": "resetView"
     }
@@ -217,6 +242,10 @@ ziftly = function (fbaccessToken) {
     }
     , sendView: function () {
       if (App.sendconfirm) App.sendconfirm.render();
+      else listRouter.navigate("home", true);
+    }
+    , sentView: function () {
+      if (App.auth_handler.isLoggedIn()) App.showSuccess();
       else listRouter.navigate("home", true);
     }
   });
