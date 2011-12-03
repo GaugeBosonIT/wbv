@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Runtime.Serialization;
+using WBV.Interfaces;
 
 namespace WBV.Models.Facebook
 {
     [DataContract]
-    public class FacebookUser
+    public class FacebookUser : IFacebookUser
     {
 
         [DataMember]
@@ -37,7 +38,7 @@ namespace WBV.Models.Facebook
     public class Profile
     {
         [DataMember]
-        public string id { get; set; }
+        public string uid { get; set; }
         [DataMember]
         public string name { get; set; }
         [DataMember]

@@ -19,5 +19,7 @@ namespace WBV.Models
         public string facebook_id { get; set; }
         [XmlAttribute]
         public string email { get; set; }
+        [XmlAttribute]
+        public string role { get; set; }
     }
 }

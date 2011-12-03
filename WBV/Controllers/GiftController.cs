@@ -27,26 +27,29 @@ namespace WBV.Controllers
         }
         
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "")]
-        public string Send(GiftRaw giftRaw)
+        public string Send(GiftWrapper gift)
         {
             try
             {
                 var sender = new User();
                 sender = _session.user;
+                sender.role = "SENDER";
                 var recipient = new User();
-                recipient.facebook_id = giftRaw.profile.profile.id;
-                recipient.name = giftRaw.profile.profile.name;
-                var gift = new Gift();
-                gift.product_id = giftRaw.product.product_id;
-                gift.User[0] = sender;
-                gift.User[1] = recipient;
+                recipient.facebook_id = gift.recipient.uid;
+                recipient.role = "RECIPIENT";
+                recipient.name = gift.recipient.name;
+                var myGift = new Gift();
+                myGift.product_id = gift.product.id;
+                myGift.User = new User[2];
+                myGift.User[0] = sender;
+                myGift.User[1] = recipient;
                 var o = new orm(_data);
-                var returned_user = o.SetObject(gift).o as Gift;
+                var returned_user = o.SetObject(myGift).o as Gift;
                 return "\"Result\":{\"status\":0";
             }
             catch (Exception exp)
             {
-                log.Error(exp);
+                log.Error(exp.ToString());
                 throw;
             }
 

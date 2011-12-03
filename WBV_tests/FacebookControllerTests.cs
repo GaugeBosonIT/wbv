@@ -18,11 +18,22 @@ namespace WBV_tests
     public class UserControllerTest
     {
         [Test]
-        public void index_returns_view()
+        public void user_returns_status_string()
         {
-
-             
-
+            //arrange
+            var mockHttpContext = new Mock<HttpContextBase>();
+            var mockContext = new Mock<ISession>();
+            var mockdata = new Mock<IData>();
+            var mockFacebookUser = new Mock<IFacebookUser>();
+            var c = new FacebookController(mockContext.Object, mockdata.Object);
+            mockFacebookUser.Object.session.access_token = "somedummytoken";
+            mockFacebookUser.Object.profile.name = "somedummy";
+            mockFacebookUser.Object.profile.uid = "1";
+            //act
+            var v = c.User(mockFacebookUser.Object) as string;
+            //assert
+            Assert.IsNotNullOrEmpty(v);
         }
+
     }
 }

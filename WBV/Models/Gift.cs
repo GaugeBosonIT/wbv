@@ -22,16 +22,28 @@ namespace WBV.Models
     [DataContract]
     public class GiftRaw
     {
+        
+        [DataMember]
+        public GiftWrapper gift {get; set;}
+
+    }
+    [DataContract]
+    public class GiftWrapper
+    {
         [DataMember]
         public Product product { get; set; }
         [DataMember]
-        public FacebookUser profile { get; set; }
+        public Profile recipient { get; set; }
+    
     }
 
     public class Product
     {
         [DataMember]
-        public string product_id { get; set; }
+        public string id { get; set; }
+
+        [DataMember]
+        public string name { get; set; }
     }
 
 }
