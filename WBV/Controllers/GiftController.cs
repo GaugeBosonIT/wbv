@@ -34,8 +34,8 @@ namespace WBV.Controllers
                 var sender = new User();
                 sender = _session.user;
                 var recipient = new User();
-                recipient.facebook_id = giftRaw.recipient.profile.id;
-                recipient.name = giftRaw.recipient.profile.name;
+                recipient.facebook_id = giftRaw.profile.profile.id;
+                recipient.name = giftRaw.profile.profile.name;
                 var gift = new Gift();
                 gift.product_id = giftRaw.product.product_id;
                 gift.User[0] = sender;
