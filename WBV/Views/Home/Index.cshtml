@@ -61,7 +61,7 @@
     </div>
   </div>
 
-    <div id="sendconfirmpage" data-title="Ziftly - Send the Gift"  class="container bodypage">
+  <div id="sendconfirmpage" data-title="Ziftly - Send the Gift"  class="container bodypage">
     <div class="header clearfix"><h1>Send the Gift</h1></div>
     <div class="content">
       <ul style="margin-top:2em;" id="gift-info" class="listview"></ul>
@@ -76,7 +76,24 @@
     </div>
   </div>
 
-
+  <div id="sentsuccesspage" data-title="Ziftly - Sent Successfully"  class="container bodypage">
+    <div class="header clearfix"><h1>Sent successfully</h1></div>
+    <div class="content">
+      
+      <div style="margin-top:1em;text-align:center">
+        You've done it, the gift has been sent to: <span class-"recipientemail"></span>! You won!
+      </div>
+      <div style="margin-top:1em;text-align:center">
+        Long and fascinating explanation of what has been done, achieved and how to proceed!
+      </div>
+      <div style="margin-top:4em">
+        <p><a href="#home" class="first last returnhome">Back to Start</a></p>
+      </div>
+    </div>
+    <div class="footer">
+        gifting app
+    </div>
+  </div>
   
 
 </div>
@@ -94,14 +111,14 @@
 <script type="text/template" id="gift-display-template">
     <li><h1>Give</h1></li>
     <li>
-      <a class="listbutton">
+      <span class="listbutton">
           <span class="label first last"><%= product.name %></span>
-      </a>
+      </span>
     </li>
     <li><h1>to</h1></li>
     <li>
-      <a class="listbutton">
+      <span class="listbutton">
           <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= recipient.pic_square %>"/><%= recipient.name %> (<%= recipient.birthday_date %>)</span>
-      </a>
+      </span>
     </li>
 </script>
