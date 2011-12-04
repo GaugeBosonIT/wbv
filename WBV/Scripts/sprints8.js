@@ -149,7 +149,7 @@ _.extend(window.sprints8, {
       this.fbUserID = session.uid;
       this.fbToken = session.access_token;
       this.getFriends();
-      FB.api("/me", function(response){this.sendUserToServer(response, session)});
+      FB.api("/me", function (response) { _t.sendUserToServer(response, session) });
       this.runLoginDeferred();
     };
 
