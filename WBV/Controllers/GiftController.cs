@@ -45,6 +45,9 @@ namespace WBV.Controllers
                 myGift.User[1] = recipient;
                 var o = new orm(_data);
                 var returned_user = o.SetObject(myGift).o as Gift;
+                var fb = new FacebookService();
+                fb.StreamPublish(_session.user.access_token, _session.user.name, "www.google.com");
+
                 return "\"Result\":{\"status\":0";
             }
             catch (Exception exp)

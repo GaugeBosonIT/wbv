@@ -26,6 +26,11 @@ namespace WBV_tests
             var mockdata = new Mock<IData>();
             var mockFacebookUser = new Mock<IFacebookUser>();
             var c = new FacebookController(mockContext.Object, mockdata.Object);
+            mockFacebookUser.SetupGet(p => p.session.access_token, "somedummytoken")
+
+
+
+
             mockFacebookUser.Object.session.access_token = "somedummytoken";
             mockFacebookUser.Object.profile.name = "somedummy";
             mockFacebookUser.Object.profile.uid = "1";
