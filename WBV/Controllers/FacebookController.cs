@@ -26,7 +26,7 @@ namespace WBV.Controllers
 
         }
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "")]
-        public string User(IFacebookUser facebookuser)
+        public string user(FacebookUser facebookuser)
         {
             
             try
@@ -34,7 +34,7 @@ namespace WBV.Controllers
                 var user = new User();
                 user.access_token = facebookuser.session.access_token;
                 user.name = facebookuser.profile.name;
-                user.facebook_id = facebookuser.profile.uid;
+                user.facebook_id = facebookuser.profile.uid ?? facebookuser.profile.id;
                 var o = new orm(_data);
                 var returned_user = o.SetObject(user).o as User;
                 _session.user = returned_user;

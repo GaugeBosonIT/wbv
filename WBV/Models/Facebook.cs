@@ -40,6 +40,8 @@ namespace WBV.Models.Facebook
         [DataMember]
         public string uid { get; set; }
         [DataMember]
+        public string id { get; set; }
+        [DataMember]
         public string name { get; set; }
         [DataMember]
         public string first_name { get; set; }

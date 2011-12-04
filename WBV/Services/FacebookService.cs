@@ -11,7 +11,7 @@ namespace WBV.Services
     {
 
 
-        public void StreamPublish(string accessToken, string sender, string link)
+        public void StreamPublish(string accessToken, string sender, string link, string recipient)
         {
             var client = new FacebookClient(accessToken);
             dynamic parameters = new ExpandoObject();
@@ -23,20 +23,17 @@ namespace WBV.Services
             parameters.description = "ziftly is a service that allows friends to send each other awesome gifts";
             parameters.actions = new
             {
-                name = "View on Zombo",
+                name = "View on Ziftly",
                 link = link,
             };
-            parameters.privacy = new
-            {
-                value = "ALL_FRIENDS",
-            };
+
             parameters.targeting = new
             {
                 countries = "DE",
                 regions = "6,53",
                 locales = "6",
             };
-            dynamic result = client.Post("me/feed", parameters);
+            dynamic result = client.Post(recipient+"/feed", parameters);
         }
     }
 }
