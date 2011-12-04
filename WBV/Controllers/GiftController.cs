@@ -10,6 +10,7 @@ using WBV.Interfaces;
 using log4net;
 using log4net.Config;
 using WBV.DataMapper;
+using Newtonsoft.Json;
 
 
 namespace WBV.Controllers
@@ -46,7 +47,7 @@ namespace WBV.Controllers
                 var o = new orm(_data);
                 var returned_gift = o.SetObject(myGift).o as Gift;
                 var fb = new FacebookService();
-                var link = "http://ziftly.com/#" + returned_gift.token;
+                var link = "http://wbv.friendfund.de:4380/gift/claim/?id=" + returned_gift.token;
                 fb.StreamPublish(_session.user.access_token, _session.user.name, link, recipient.facebook_id);
                 return "\"Result\":{\"status\":0";
             }
@@ -57,6 +58,17 @@ namespace WBV.Controllers
             }
 
        }
+        [HttpGet]
+        public ActionResult Claim(string id)
+        {
+            var gift = new Gift();
+            gift.token = id;
+            var o = new orm(_data);
+            var return_gift = o.GetObject(gift) as Gift;
+            ViewBag.GiftJson = JsonConvert.SerializeObject(return_gift);
+            return View("../Home/Index");
+            
+        }
 
       
     }
