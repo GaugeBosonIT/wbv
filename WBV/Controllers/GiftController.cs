@@ -69,8 +69,12 @@ namespace WBV.Controllers
             gift.token = id;
             var o = new orm(_data);
             var return_gift = o.GetObject(gift) as Gift;
+            var product = new Product();
+            product.id = return_gift.product_id;
+            product.name = return_gift.name;
+            product.picture = return_gift.picture;
             var dict = new Dictionary<string, object>();
-            dict.Add("product", return_gift.product_id);
+            dict.Add("product", product);
             dict.Add("sender", return_gift.User[0]);
             dict.Add("recipient", return_gift.User[1]);
 

@@ -16,6 +16,10 @@ namespace WBV.Models
         [XmlAttribute]
         public virtual string product_id { get; set; }
         [XmlAttribute]
+        public virtual string name { get; set; }
+        [XmlAttribute]
+        public virtual string picture { get; set; }
+        [XmlAttribute]
         public virtual string token { get; set; }
         [XmlElement]
         public User[] User { get; set; }
@@ -46,6 +50,8 @@ namespace WBV.Models
 
         [DataMember]
         public string name { get; set; }
+        [XmlAttribute]
+        public virtual string picture { get; set; }
     }
 
 }
