@@ -6,6 +6,7 @@ ziftly = function (fbaccessToken) {
   window.SendConfirmModel = Backbone.Model.extend({
     url: function () { return "/api/gift/send" }
     , validate: function (attrs) {
+      return;
       if (!window.sprints8.isEmail(this.get("gift").recipient.email))
         return "email not correct";
     }
@@ -165,7 +166,7 @@ ziftly = function (fbaccessToken) {
   window.SentSuccessView = Backbone.View.extend({
     el: $('#sentsuccesspage')
     , render: function (gift) {
-      this.$(".recipientemail").html(this.email);
+      this.$(".recipientemail").html(gift.email);
       App.navigator.to(5);
     }
   });
@@ -202,7 +203,12 @@ ziftly = function (fbaccessToken) {
       listRouter.navigate("friend", true);
     }
     , showSuccess: function () {
-      new SentSuccessView().render(this.gift);
+      if (_.keys(this.gift).length>0) {
+        new SentSuccessView().render(this.gift);
+        this.gift = {};
+      } else {
+        listRouter.navigate("home", true);
+      }
     }
     , render: function () {
       if (this.auth_handler.isLoggedIn()) {

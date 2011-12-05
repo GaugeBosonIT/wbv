@@ -64,9 +64,9 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
   border-bottom-left-radius: 0;
 }
 
-button {
+.button {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
-  width:100%;margin: 0.5em 0; cursor:pointer;
+  display:block;text-align:center;margin: 0.5em 0; cursor:pointer;
   border: 2px solid #222;
 background: rgb(73,155,234); /* Old browsers */
 background: -moz-linear-gradient(top,  rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%); /* FF3.6+ */
@@ -96,10 +96,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
   -webkit-user-drag: none;
   user-drag: none;
 }
-button:hover {
+.button:hover {
     background: rgb(73,155,234); /* Old browsers */
    }
-button:active {
+.button:active {
    background: #1b435e;
    }
 
