@@ -63,6 +63,10 @@ namespace WBV.Models.Facebook
         public string updated_time { get; set; }
         [DataMember]
         public string email { get; set; }
+        [DataMember]
+        public string pic_square { get; set; }
+
+
 
     }
 

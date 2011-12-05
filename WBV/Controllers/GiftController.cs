@@ -49,8 +49,8 @@ namespace WBV.Controllers
                 var o = new orm(_data);
                 var returned_gift = o.SetObject(myGift).o as Gift;
                 var fb = new FacebookService();
-                var hostname = _session._context.Request.Url.Host;
-
+                var port  = (_session._context.Request.Url.Port == 80) ? "" : ":"+_session._context.Request.Url.Port.ToString();
+                var hostname = _session._context.Request.Url.Host + port;
                 var link = "http://" + hostname + "/gift/claim/?id=" + returned_gift.token;
                 fb.StreamPublish(_session.user.access_token, _session.user.name, link, recipient.facebook_id);
                 var result = new Result();

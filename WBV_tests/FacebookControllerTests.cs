@@ -10,6 +10,7 @@ using WBV.Interfaces;
 using WBV.Models;
 using WBV.DataAccess;
 using WBV.Controllers.Helpers;
+using WBV.Models.Facebook;
 
 
 namespace WBV_tests
@@ -24,7 +25,7 @@ namespace WBV_tests
             //var mockHttpContext = new Mock<HttpContextBase>();
             //var mockContext = new Mock<ISession>();
             //var mockdata = new Mock<IData>();
-            //var mockFacebookUser = new Mock<IFacebookUser>();
+            //var mockFacebookUser = new Mock<FacebookUser>();
             //var c = new FacebookController(mockContext.Object, mockdata.Object);
             //mockFacebookUser.SetupGet(p => p.session.access_token, "somedummytoken");
 

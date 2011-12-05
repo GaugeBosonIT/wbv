@@ -21,5 +21,7 @@ namespace WBV.Models
         public string email { get; set; }
         [XmlAttribute]
         public string role { get; set; }
+        [XmlAttribute]
+        public string picture { get; set; }
     }
 }

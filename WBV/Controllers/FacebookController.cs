@@ -36,6 +36,7 @@ namespace WBV.Controllers
                 user.name = facebookuser.profile.name;
                 user.facebook_id = facebookuser.profile.uid ?? facebookuser.profile.id;
                 user.email = facebookuser.profile.email;
+                user.picture = facebookuser.profile.pic_square;
                 var o = new orm(_data);
                 var returned_user = o.SetObject(user).o as User;
                 _session.user = returned_user;
