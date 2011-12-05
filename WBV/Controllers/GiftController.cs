@@ -69,8 +69,13 @@ namespace WBV.Controllers
             gift.token = id;
             var o = new orm(_data);
             var return_gift = o.GetObject(gift) as Gift;
-            ViewBag.GiftJson = JsonConvert.SerializeObject(return_gift);
-            return RedirectToAction("Index", "Home");
+            var dict = new Dictionary<string, object>();
+            dict.Add("product", return_gift.product_id);
+            dict.Add("sender", return_gift.User[0]);
+            dict.Add("recipient", return_gift.User[1]);
+
+            TempData["GiftJson"] = JsonConvert.SerializeObject(dict);
+            return RedirectToRoute("Home");
             
         }
 
