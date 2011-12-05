@@ -93,9 +93,21 @@ namespace WBV.Controllers
             ret_gift.redeem_token = return_gift.redeem_token;
             var dict = new Dictionary<string, object>();
             dict.Add("gift", ret_gift);
+            SendThankYouMail(return_gift);
             return Json(dict);
 
         }
+
+       public void SendThankYouMail(Gift gift)
+       {
+           
+           var subject = gift.User[1].name  + " says thanks for the gift";
+           var body = "Dear " + gift.User[0].name + " " + gift.User[1].name + " has now redeemed your gift and is very happy. Best wishes, the Ziftly team";
+           var toAddress = gift.User[0].email;
+
+           var mail = new Mail(subject,body, toAddress);
+           mail.SendMail();
+       }
 
       
     }

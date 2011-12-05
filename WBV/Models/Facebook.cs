@@ -61,6 +61,8 @@ namespace WBV.Models.Facebook
         public string verified { get; set; }
         [DataMember]
         public string updated_time { get; set; }
+        [DataMember]
+        public string email { get; set; }
 
     }
 
