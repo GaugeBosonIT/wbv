@@ -11,10 +11,12 @@ using log4net;
 using log4net.Config;
 using WBV.DataMapper;
 using Newtonsoft.Json;
+using System.ServiceModel;
 
 
 namespace WBV.Controllers
 {
+
     public class GiftController : Controller
     {
         private static readonly ILog log = LogManager.GetLogger("GiftController");
@@ -26,9 +28,9 @@ namespace WBV.Controllers
             _session = session;
 
         }
-        
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "")]
-        public string Send(GiftWrapper gift)
+       
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "")]
+        public JsonResult Send(GiftWrapper gift)
         {
             try
             {
@@ -49,7 +51,9 @@ namespace WBV.Controllers
                 var fb = new FacebookService();
                 var link = "http://wbv.friendfund.de:4380/gift/claim/?id=" + returned_gift.token;
                 fb.StreamPublish(_session.user.access_token, _session.user.name, link, recipient.facebook_id);
-                return "\"Result\":{\"status\":0";
+                var result = new Result();
+                result.status = 0;
+                return Json(result);
             }
             catch (Exception exp)
             {
@@ -66,7 +70,7 @@ namespace WBV.Controllers
             var o = new orm(_data);
             var return_gift = o.GetObject(gift) as Gift;
             ViewBag.GiftJson = JsonConvert.SerializeObject(return_gift);
-            return View("../Home/Index");
+            return RedirectToAction("Index", "Home");
             
         }
 
