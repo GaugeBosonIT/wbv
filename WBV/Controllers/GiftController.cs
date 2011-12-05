@@ -49,7 +49,7 @@ namespace WBV.Controllers
                 var o = new orm(_data);
                 var returned_gift = o.SetObject(myGift).o as Gift;
                 var fb = new FacebookService();
-                var link = "http://wbv.friendfund.de:4380/gift/claim/?id=" + returned_gift.token;
+                var link = "http://ziftly.shapp.de/gift/claim/?id=" + returned_gift.token;
                 fb.StreamPublish(_session.user.access_token, _session.user.name, link, recipient.facebook_id);
                 var result = new Result();
                 result.status = 0;
