@@ -29,7 +29,7 @@ namespace WBV.Services
             toAddress = _toAddress;
         }
 
-        public void SendMail(Mail m)
+        public void SendMail()
         {
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient(SmtpClient);
