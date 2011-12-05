@@ -83,7 +83,7 @@ ziftly = function (fbaccessToken, gift_json) {
       this.model.bind('change:selected', this.rcptSelected, this);
     }
     , render: function () {
-      App.navigator.to(3);
+      App.navigator.to(2);
     }
     , addOne: function (item) {
       var view = new FriendView({ model: item });
@@ -126,7 +126,7 @@ ziftly = function (fbaccessToken, gift_json) {
       this.model.bind('change:selected', this.itemSelected, this);
     }
     , render: function () {
-      App.navigator.to(2);
+      App.navigator.to(3);
     }
     , addOne: function (item) {
       var view = new GiftSuggestionView({ model: item });
@@ -265,12 +265,12 @@ ziftly = function (fbaccessToken, gift_json) {
     }
     , friendSelected: function (recipient_model) {
       this.gift.recipient = recipient_model.toJSON();
-      this.sendconfirm = new SendConfirmView({ model: new SendConfirmModel({ gift: this.gift }) });
-      listRouter.navigate("send", true);
+      listRouter.navigate("gift", true);
     }
     , giftSelected: function (product_model) {
       this.gift.product = product_model.toJSON();
-      listRouter.navigate("friend", true);
+      this.sendconfirm = new SendConfirmView({ model: new SendConfirmModel({ gift: this.gift }) });
+      listRouter.navigate("send", true);
     }
     , showSuccess: function () {
       if (_.keys(this.gift).length > 0) {
@@ -282,7 +282,7 @@ ziftly = function (fbaccessToken, gift_json) {
     }
     , render: function () {
       if (this.auth_handler.isLoggedIn()) {
-        this.giftsuggestions.render();
+        this.friendsuggestions.render();
       } else {
         this.navigator.to(1);
       }
@@ -315,6 +315,7 @@ ziftly = function (fbaccessToken, gift_json) {
   ListRouter = Backbone.Router.extend({
     routes: { "home": "resetView"
             , "send": "sendView"
+            , "gift": "giftView"
             , "sent": "sentView"
             , "friend": "selectFriendView"
             , "*other": "resetView"
@@ -324,6 +325,10 @@ ziftly = function (fbaccessToken, gift_json) {
     }
     , selectFriendView: function () {
       if (App.auth_handler.isLoggedIn()) App.friendsuggestions.render();
+      else listRouter.navigate("home", true);
+    }
+    , giftView: function () {
+      if (App.auth_handler.isLoggedIn()) App.giftsuggestions.render();
       else listRouter.navigate("home", true);
     }
     , sendView: function () {

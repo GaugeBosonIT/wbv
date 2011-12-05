@@ -31,6 +31,23 @@
         gifting app
     </div>
   </div>
+
+  <div id="selectrcptpage" data-title="Ziftly - Select Recipient"  class="container bodypage">
+    <div class="header clearfix"><h1>Select Recipient</h1></div>
+    <div class="content">
+      <h1 style="text-align:center">Select person to be gifted!</h1>
+      
+      <div style="margin-top:4em;text-align:center">Pick any one from below:</div>
+      <ul class="listview" id="recipientlist-items">
+        <li>LOADING!!!!!!!!!!</li>
+      </ul>
+    </div>
+    <div class="footer">
+        gifting app
+    </div>
+  </div>
+
+
   <div id="selectgiftpage" data-title="Ziftly - Select Gift"  class="container bodypage">
     <div class="header clearfix"><h1>Select Gift</h1></div>
     <div class="content">
@@ -46,20 +63,7 @@
     </div>
   </div>
   
-  <div id="selectrcptpage" data-title="Ziftly - Select Recipient"  class="container bodypage">
-    <div class="header clearfix"><h1>Select Recipient</h1></div>
-    <div class="content">
-      <h1 style="text-align:center">Select person to be gifted!</h1>
-      
-      <div style="margin-top:4em;text-align:center">Pick any one from below:</div>
-      <ul class="listview" id="recipientlist-items">
-        <li>LOADING!!!!!!!!!!</li>
-      </ul>
-    </div>
-    <div class="footer">
-        gifting app
-    </div>
-  </div>
+
 
   <div id="sendconfirmpage" data-title="Ziftly - Send the Gift"  class="container bodypage">
     <div class="header clearfix"><h1>Send the Gift</h1></div>
@@ -146,14 +150,14 @@
 <script type="text/template" id="gift-display-template">
     <li><h1>Give</h1></li>
     <li>
-      <span class="listbutton">
-          <span class="label first last"><%= product.name %></span>
+      <span class="listbutton deactive">
+          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= recipient.pic_square %>"/><%= recipient.name %> (<%= recipient.birthday_date %>)</span>
       </span>
     </li>
-    <li><h1>to</h1></li>
+    <li><h1>a</h1></li>
     <li>
-      <span class="listbutton">
-          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= recipient.pic_square %>"/><%= recipient.name %> (<%= recipient.birthday_date %>)</span>
+      <span class="listbutton deactive">
+          <span class="label first last"><%= product.name %></span>
       </span>
     </li>
 </script>
@@ -161,13 +165,13 @@
 <script type="text/template" id="gift-redeem-display-template">
     <li><h1>You've received this gift:</h1></li>
     <li>
-      <span class="listbutton">
+      <span class="listbutton deactive">
           <span class="label first last"><%= product.name %></span>
       </span>
     </li>
     <li><h1>from</h1></li>
     <li>
-      <span class="listbutton">
+      <span class="listbutton deactive">
           <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= sender.pic_square %>"/><%= sender.name %></span>
       </span>
     </li>
