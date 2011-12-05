@@ -157,12 +157,15 @@ ziftly = function (fbaccessToken, gift_json) {
       App.navigator.to(4);
     }
     , sendGift: function () {
-      var _t = this;
+      var _t = this, button = _t.$(".sendgiftbutton"), button_text = button.html()
+      button.html('<img src="/Content/loader.gif"/>').removeClass("sendgiftbutton");
+
       this.model.get('gift').recipient.email = this.$("#rcpt-emailaddress").val();
       this.model.save({}, { error: function (model, error) {
         _t.$("#rcpt-emailaddress").after('<span class="error">' + error + '</span>')
       }, success: function () {
         $(".error", _t.$("#rcpt-emailaddress").parentNode).remove();
+        button.html(button_text).addClass("sendgiftbutton");
         listRouter.navigate("sent", true);
       }
       });
