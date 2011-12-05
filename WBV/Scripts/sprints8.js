@@ -32,7 +32,7 @@ _.extend(window.sprints8, {
                   , topage = $(pages.get(n))
                   , activePageClass = "active-page"
                   , transEnd = function (e) {
-                    frompage.removeClass(activePageClass + " out slide " + reverseClass);
+                    frompage.removeClass(activePageClass).removeClass(" out slide " + reverseClass);
                     topage.removeClass("in slide" + reverseClass);
                     topage.unbind('webkitAnimationEnd');
                     topage.unbind('animationend');
@@ -43,7 +43,7 @@ _.extend(window.sprints8, {
           topage.bind('animationend', transEnd, this);
           topage.bind('oAnimationEnd', transEnd, this);
           frompage.addClass("slide out" + reverseClass);
-          topage.addClass("slide in " + activePageClass + reverseClass);
+          topage.addClass(activePageClass).addClass("slide in " + reverseClass);
         } else {
           frompage.removeClass(activePageClass);
           topage.addClass(activePageClass);
