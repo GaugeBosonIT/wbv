@@ -1,12 +1,12 @@
 * {margin:0; padding:0;}
-html {min-height:100%;height:100%;}
-body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;height:100%;}
+html {min-height:100%;}
+body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
 
-.container {position:absolute;width:0;top:0;left:0;display:none;z-index:-1;vibility:hidden;height:0;}
-.container.active-page {display:block;z-index:1;vibility:visible;height:0;min-height:100%;width:100%;}
-.header {color:White;text-align:center;background-color:rgba(0, 0, 0, 0.5);}
+.container {position:absolute;width:100%;top:0;left:0;display:none;min-height:100%;}
+.container.active-page {display:block;}
+.header {color:White;text-align:center;background-color:#7d7d7d;}
 .header h1 {margin: 0 2em;}
-.footer{position: absolute;bottom: 0em;left: 0;width: 100%;color: white;text-align: center;height: 2em;line-height: 2em;background: rgba(0, 0, 0, .6);text-shadow: 0 1px 1px rgba(0, 0, 0, .8);}
+.footer{position: absolute;bottom: 0em;left: 0;width: 100%;color: white;text-align: center;height: 2em;line-height: 2em;background: #555;text-shadow: 0 1px 1px rgba(0, 0, 0, .8);}
 .footer > div {padding: 1em}
 .footer a {color:White;line-height:2em;margin: 0 2em}
 
@@ -160,7 +160,7 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;height:100%;
   width: 100%;
 }
 
-.bodypage .content {max-width:738px;margin:0px auto 2em;padding:1em;color:white;background-color:rgba(0, 0, 0, 0.5);}
+.bodypage .content {max-width:738px;margin:0px auto 2em;padding:1em;color:white;background-color:#777}
 .bodypage .content h1 {font-size:1.3em;text-align:center}
 
 
