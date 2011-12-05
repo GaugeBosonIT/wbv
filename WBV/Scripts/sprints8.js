@@ -1,4 +1,21 @@
-if(typeof window.sprints8==="undefined")window.sprints8 = {}
+if (typeof window.sprints8 === "undefined") window.sprints8 = {}
+
+window.silentScroll = function (ypos) {
+  if (isNaN(ypos)) {
+    ypos = window.defaultHomeScroll;
+  }
+  if (window.devicePixelRatio && window.devicePixelRatio != 1) {
+    var h = window.outerHeight / window.devicePixelRatio || window.innerHeight;
+    $("#root > .container").height(h + "px");
+  }
+  setTimeout(function () { window.scrollTo(0, ypos); }, 20);
+};
+
+window._scrollTop = ("pageXOffset" in window || "scrollTop" in document.documentElement || "scrollTop" in $("body"));
+window.defaultHomeScroll = (!window._scrollTop) ? 0 : 1;
+window.silentScroll(window.defaultHomeScroll);
+
+
 _.extend(window.sprints8, {
   resizePopup: function (e) {
     var popup = $(".loadingpopup:not(hidden)")
