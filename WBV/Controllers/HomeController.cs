@@ -28,6 +28,7 @@ namespace WBV.Controllers
         {
             try
             {
+                ViewBag.GiftJson = TempData["GiftJson"];
                 ViewBag.AccessToken = LoginStatus.accessToken(_session, _data);
             }
             catch (Exception exp)
