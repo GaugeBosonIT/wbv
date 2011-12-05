@@ -73,6 +73,7 @@ namespace WBV.Controllers
             product.id = return_gift.product_id;
             product.name = return_gift.name;
             product.picture = return_gift.picture;
+            product.token = return_gift.token;
             var dict = new Dictionary<string, object>();
             dict.Add("product", product);
             dict.Add("sender", return_gift.User[0]);
