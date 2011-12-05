@@ -32,6 +32,7 @@ _.extend(window.sprints8, {
                   , topage = $(pages.get(n))
                   , activePageClass = "active-page"
                   , transEnd = function (e) {
+                    window.scrollTo(0, 1);
                     frompage.removeClass(activePageClass).removeClass(" out slide " + reverseClass);
                     topage.removeClass("in slide" + reverseClass);
                     topage.unbind('webkitAnimationEnd');

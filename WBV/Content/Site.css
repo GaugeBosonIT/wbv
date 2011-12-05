@@ -21,7 +21,7 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;height:100%;
   -webkit-user-drag: none;
   user-drag: none;
 }
-.listview .listbutton .label{padding:0 1em;line-height: 2.5em;display:block;overflow: hidden;
+.listview .listbutton .label{padding:0 1.5em 0 1em;line-height: 2.5em;display:block;overflow: hidden;
   word-wrap: no-break;
   white-space:nowrap;
   text-overflow: ellipsis;
@@ -197,13 +197,13 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;height:100%;
 
 .in, .out {
   -webkit-animation-timing-function: ease-in-out;
-  -webkit-animation-duration: 350ms;
+  -webkit-animation-duration: 950ms;
   -moz-animation-timing-function: ease-in-out;
-  -moz-animation-duration: 350ms;
+  -moz-animation-duration: 950ms;
   -ms-animation-timing-function: ease-in-out;
-  -ms-animation-duration: 350ms;
+  -ms-animation-duration: 950ms;
   -o-animation-timing-function: ease-in-out;
-  -o-animation-duration: 350ms;
+  -o-animation-duration: 950ms;
 }
 
 
