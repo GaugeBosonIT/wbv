@@ -8,11 +8,12 @@ using WBV.Models.Facebook;
 
 namespace WBV.Models
 {
-   
+   [DataContract]
     [Serializable]
     public class Gift
-    {
-        
+    {   [DataMember]
+        [XmlAttribute]
+        public virtual string redeem_token { get; set; } 
         [XmlAttribute]
         public virtual string product_id { get; set; }
         [XmlAttribute]

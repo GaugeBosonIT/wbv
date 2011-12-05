@@ -83,6 +83,20 @@ namespace WBV.Controllers
             
         }
 
+
+       [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "")]
+        public JsonResult Redeem(Gift gift)
+        {
+            var o = new orm(_data);
+            var return_gift = o.GetObject(gift) as Gift;
+            var ret_gift = new Gift();
+            ret_gift.redeem_token = return_gift.redeem_token;
+            var dict = new Dictionary<string, object>();
+            dict.Add("gift", ret_gift);
+            return Json(dict);
+
+        }
+
       
     }
 }
