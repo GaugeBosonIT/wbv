@@ -25,7 +25,8 @@ _.extend(window.sprints8, {
     this.current_page = 0;
     this.to = function (n) {
       window.scrollTo(0, 1);
-      var reverseClass = (this.current_page > n) ? " reverse" : ""
+      if (n != this.current_page){
+        var reverseClass = (this.current_page > n) ? " reverse" : ""
                   , pages = $("#root > .container")
                   , frompage = $(pages.get(this.current_page))
                   , topage = $(pages.get(n))
@@ -37,17 +38,18 @@ _.extend(window.sprints8, {
                     topage.unbind('animationend');
                     topage.unbind('oAnimationEnd');
                   };
-      if (window.support['cssTransitions']) {
-        topage.bind('webkitAnimationEnd', transEnd, this);
-        topage.bind('animationend', transEnd, this);
-        topage.bind('oAnimationEnd', transEnd, this);
-        frompage.addClass("slide out" + reverseClass);
-        topage.addClass("slide in " + activePageClass + reverseClass);
-      } else {
-        frompage.removeClass(activePageClass);
-        topage.addClass(activePageClass);
-      }
-      this.current_page = n;
+        if (window.support['cssTransitions']) {
+          topage.bind('webkitAnimationEnd', transEnd, this);
+          topage.bind('animationend', transEnd, this);
+          topage.bind('oAnimationEnd', transEnd, this);
+          frompage.addClass("slide out" + reverseClass);
+          topage.addClass("slide in " + activePageClass + reverseClass);
+        } else {
+          frompage.removeClass(activePageClass);
+          topage.addClass(activePageClass);
+        }
+        this.current_page = n;
+       }
     }
   }
   , ConfigStore: function (key) {
@@ -109,13 +111,7 @@ _.extend(window.sprints8, {
     this.isLoggedIn = function () {
       return this.fbToken && this.fbToken !== 'NOTOKEN';
     };
-    var _t = this
-        , _onSessionChange = function (response) {
-          document.body.className = response.authResponse ? 'connected' : 'not_connected';
-          if (response.authResponse) {
-            console.log(response);
-          }
-        };
+    var _t = this;
     var loadDefs = new sprints8.deferreds(function () { return this.fbDoneLoading }, this);
     this.addFBDeferred = loadDefs.add;
     this.runFBDeferred = loadDefs.run;
@@ -153,16 +149,32 @@ _.extend(window.sprints8, {
       this.runLoginDeferred();
     };
 
+    this.verify_user = function (expected_user_id, params) {
+      _t.addFBDeferred(function () {
+        var valid_callback = params.valid
+          , notlogged_in_callback = params.notlogged_in
+          , invalid_callback = params.invalid;
+
+        if (_t.isLoggedIn()) {
+          FB.api("/me", function (response) {
+            if (response.id === expected_user_id) valid_callback();
+            else invalid_callback();
+          });
+        } else {
+          notlogged_in_callback();
+        }
+      });
+    };
+
     window.fbAsyncInit = function () {
       var channelUrl = document.location.protocol + '//' + document.location.host + "/Scripts/channel.html";
-      FB.init({ appId: app_id, status: true, cookie: true, xfbml: false, channelUrl: channelUrl });
+      FB.init({ appId: app_id, status: true, cookie: true, xfbml: false, channelUrl: channelUrl, oauth: false });
       _t.fbDoneLoading = true;
       var fb = FB.getAccessToken;
       if (_t.isLoggedIn()) {
         FB.getAccessToken = function () { return fb() || _t.fbToken }
         _t.runLoginDeferred();
       }
-      FB.Event.subscribe("auth.sessionChange", _onSessionChange);
       _t.runFBDeferred();
     };
     var e = document.createElement('script');

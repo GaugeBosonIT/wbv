@@ -24,7 +24,7 @@
       
       <div style="margin-top:4em;text-align:center">You need to login with facebook!</div>
       <div style="margin-top:4em">
-        <p><button class="first last fbloginbutton">Login</button></p>
+        <p><a class="first last fbloginbutton button">Login</a></p>
       </div>
     </div>
     <div class="footer">
@@ -65,10 +65,12 @@
     <div class="header clearfix"><h1>Send the Gift</h1></div>
     <div class="content">
       <ul style="margin-top:2em;" id="gift-info" class="listview"></ul>
-      <h1 style="text-align:center;margin-top:2em;">enter an email address!</h1>
-      <div style="margin-top:1em;text-align:center"><input type="email" placeholder="email address" name="email" id="rcpt-emailaddress" value-"" /></div>
+      <div class="hidden">
+        <h1 style="text-align:center;margin-top:2em;">enter an email address!</h1>
+        <div style="margin-top:1em;text-align:center"><input type="email" placeholder="email address" name="email" id="rcpt-emailaddress" value-"" /></div>
+      </div>
       <div style="margin-top:4em">
-        <p><button class="first last sendgiftbutton">send now</button></p>
+        <p><a class="first last sendgiftbutton button">send now</a></p>
       </div>
     </div>
     <div class="footer">
@@ -81,13 +83,13 @@
     <div class="content">
       
       <div style="margin-top:1em;text-align:center">
-        You've done it, the gift has been sent to: <span class-"recipientemail"></span>! You won!
+        The gift has been sent to: <span class="recipientname"></span>!
       </div>
       <div style="margin-top:1em;text-align:center">
-        Long and fascinating explanation of what has been done, achieved and how to proceed!
+        Explanation of what has been done, achieved and how to proceed!
       </div>
       <div style="margin-top:4em">
-        <p><a href="#home" class="first last returnhome">Back to Start</a></p>
+        <p><a href="#home" class="button first last returnhome">Back to Start</a></p>
       </div>
     </div>
     <div class="footer">
@@ -95,6 +97,39 @@
     </div>
   </div>
   
+    <div id="redeempage" data-title="Ziftly - Redeem Your Gift"  class="container bodypage">
+    <div class="header clearfix"><h1>Redeem Your Gift</h1></div>
+    <div class="content">
+      <ul style="margin-top:2em;" id="gift-redeem-info" class="listview"></ul>
+      <div style="margin-top:4em">
+        <p class="hideable loadingsplashdisplay">loading..............</p>
+        <p><a class="hideable button first last redeemgift hidden">Redeem Now</a></p>
+        <p><a class="hideable button first last fbloginbutton hidden">Login please</a></p>
+        <p><a href="#home" class="hideable button first last pleasegoaway hidden">This is not for you, please go away!</a></p>
+      </div>
+    </div>
+    <div class="footer">
+        gifting app
+    </div>
+  </div>
+
+    <div id="redemptionpage" data-title="Ziftly - Redeem Your Gift"  class="container bodypage">
+    <div class="header clearfix"><h1>Redeem Your Gift</h1></div>
+    <div class="content">
+      <h1>Below find the redemption code, make sure to show this to the cashier:</h1>
+      <ul class="listview" style="margin-top:2em;">
+        <li class="listbutton"><span class="label">Code: <span class="couponcode"><pre>loading</pre></span></span></li>
+      </ul>
+      <div style="margin-top:4em">
+        <p><a href="#home" class="button first last hideable hidden">Done</a></p>
+      </div>
+    </div>
+    <div class="footer">
+        gifting app
+    </div>
+  </div>
+
+
 
 </div>
 
@@ -119,6 +154,21 @@
     <li>
       <span class="listbutton">
           <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= recipient.pic_square %>"/><%= recipient.name %> (<%= recipient.birthday_date %>)</span>
+      </span>
+    </li>
+</script>
+
+<script type="text/template" id="gift-redeem-display-template">
+    <li><h1>You've received this gift:</h1></li>
+    <li>
+      <span class="listbutton">
+          <span class="label first last"><%= product.name %></span>
+      </span>
+    </li>
+    <li><h1>from</h1></li>
+    <li>
+      <span class="listbutton">
+          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= sender.pic_square %>"/><%= sender.name %></span>
       </span>
     </li>
 </script>
