@@ -17,7 +17,7 @@ namespace WBV.Services
             dynamic parameters = new ExpandoObject();
             parameters.message = sender + " has sent you gift";
             parameters.link = link;
-            parameters.picture = "http://www.noupe.com/wp-content/uploads/2010/02/41-valentine.jpg";
+            parameters.picture = "http://stockfresh.com/files/c/ccaetano/x/60/475343_21460906.jpg";
             parameters.name = "Gifts delivered by ziftly";
             parameters.caption = "Clink the link to claim your gift";
             parameters.description = "ziftly is a service that allows friends to send each other awesome gifts";
