@@ -189,6 +189,7 @@ ziftly = function (fbaccessToken, gift_json) {
         , invalid: function () {
           _t.$(".hideable:not(.hidden)").addClass("hidden");
           _t.$(".pleasegoaway").removeClass("hidden");
+          App.removeGift();
         }
         , notlogged_in: function () {
           _t.$(".hideable:not(.hidden)").addClass("hidden");
@@ -198,13 +199,45 @@ ziftly = function (fbaccessToken, gift_json) {
       App.navigator.to(6);
     }
     , redeemGift: function () {
-      console.log(this.model.get("gift"));
+      this.redemption = this.redemption || new RedemptionView(this.model.get("gift"));
+      this.redemption.render();
+    }
+    , destroy: function () {
+      if (this.redemption) this.redemption.destroy();
+      this.model.unbind();
+      delete this.model;
+      this.model = null;
+      this.el.unbind();
     }
   });
 
-
-
-
+  window.RedemptionView = Backbone.View.extend({
+    el: $('#redemptionpage')
+    , initialize: function (gift) {
+      var _t = this;
+      this.gift = gift;
+      $.ajax({
+        type: "POST"
+        , dataType: "json"
+        , url: "/api/gift/redeem"
+        , contentType: "application/json; charset=utf-8"
+        , data: JSON.stringify({ gift: { token: gift.product.token} })
+        , success: function (model, status, xhr) {
+          _t.$(".couponcode").html(model.gift.redeem_token);
+          App.removeGift();
+          _t.$(".hideable.hidden").removeClass("hidden");
+        }
+      });
+    }
+    , render: function () {
+      App.navigator.to(7);
+    }
+    , destroy: function () {
+      delete this.gift;
+      this.gift = null;
+      this.el.unbind();
+    }
+  });
   /* -------------------------------------------- --- -------------------------------------------- */
   /* -------------------------------------------- APP -------------------------------------------- */
   /* -------------------------------------------- --- -------------------------------------------- */
@@ -249,6 +282,11 @@ ziftly = function (fbaccessToken, gift_json) {
       } else {
         this.navigator.to(1);
       }
+    }
+    , removeGift: function () {
+      if (this.redemption_view) this.redemption_view.destroy();
+      this.redemption_view = null;
+      gift_json = null;
     }
     , reset: function () {
       if (gift_json) {
