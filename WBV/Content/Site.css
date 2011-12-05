@@ -13,7 +13,14 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;height:100%;
 /* -------------------------------- ELEMENTS -------------------------------- */
 
 .listview {list-style-type: none}
-.listview .listbutton {background:white;display:inline-block;border:2px solid #777;margin:.5em 0;text-decoration:none;color:Black;position:relative;width:100%;cursor:pointer;overflow: hidden;}
+.listview .listbutton {background:white;display:inline-block;border:2px solid #777;margin:.5em 0;text-decoration:none;color:Black;position:relative;width:100%;cursor:pointer;overflow: hidden;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  user-select: none;
+  -moz-user-drag: -moz-none;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
 .listview .listbutton .label{padding:0 1em;line-height: 2.5em;display:block;overflow: hidden;
   word-wrap: no-break;
   white-space:nowrap;
