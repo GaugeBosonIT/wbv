@@ -1,6 +1,6 @@
 * {margin:0; padding:0;}
-html {min-height:100%;}
-body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
+html {min-height:100%;height:100%;}
+body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;height:100%;}
 
 .container {min-height:100%;position:absolute;width:100%;top:0;left:0;display:none;}
 .container.active-page {display:block}
