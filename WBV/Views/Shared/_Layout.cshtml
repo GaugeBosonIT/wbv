@@ -42,6 +42,8 @@
     window.support = {
       supportsTouch: 'createTouch' in document
       , 'cssTransitions': testPropsAll('transitionProperty')
+      , _scrollTop : ("pageXOffset" in window || "scrollTop" in document.documentElement || "scrollTop" in document.getElementsByTagName("body")[0])
+      , defaultHomeScroll : (!window._scrollTop) ? 0 : 1
     };
     yepnope({
       test: support['cssTransitions'],

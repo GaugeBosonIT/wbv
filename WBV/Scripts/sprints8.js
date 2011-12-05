@@ -1,19 +1,9 @@
 if (typeof window.sprints8 === "undefined") window.sprints8 = {}
 
 window.silentScroll = function (ypos) {
-  if (isNaN(ypos)) {
-    ypos = window.defaultHomeScroll;
-  }
-  if (window.devicePixelRatio && window.devicePixelRatio != 1) {
-    var h = window.outerHeight / window.devicePixelRatio || window.innerHeight;
-    $("#root > .container").height(h + "px");
-  }
+  if (isNaN(ypos)) ypos = window.support.defaultHomeScroll;
   setTimeout(function () { window.scrollTo(0, ypos); }, 20);
 };
-
-window._scrollTop = ("pageXOffset" in window || "scrollTop" in document.documentElement || "scrollTop" in $("body"));
-window.defaultHomeScroll = (!window._scrollTop) ? 0 : 1;
-window.silentScroll(window.defaultHomeScroll);
 
 
 _.extend(window.sprints8, {
@@ -41,7 +31,6 @@ _.extend(window.sprints8, {
   , Navigator: function () {
     this.current_page = 0;
     this.to = function (n) {
-      window.scrollTo(0, 1);
       if (n != this.current_page) {
         var reverseClass = (this.current_page > n) ? " reverse" : ""
                   , pages = $("#root > .container")
@@ -61,7 +50,7 @@ _.extend(window.sprints8, {
           topage.bind('oAnimationEnd', transEnd, this);
           frompage.addClass("slide out" + reverseClass);
           topage.addClass(activePageClass).addClass("slide in " + reverseClass);
-          window.scrollTo(0, 1);
+          window.silentScroll()
         } else {
           frompage.removeClass(activePageClass);
           topage.addClass(activePageClass);
@@ -150,6 +139,7 @@ _.extend(window.sprints8, {
       else if (cb) cb(_t.fbFriends);
     };
     this.sendUserToServer = function (response, session) {
+      response.pic_square = "http://graph.facebook.com/"+response.id+"/picture";
       $.ajax({
         type: "POST"
         , dataType: "json"

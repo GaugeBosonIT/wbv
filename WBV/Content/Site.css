@@ -21,7 +21,7 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
   -webkit-user-drag: none;
   user-drag: none;
 }
-.listview .listbutton.deactive {cursor:default}
+.listview .listbutton.deactive {cursor:default;background:#AAB; color:white}
 .listview .listbutton .label{padding:0 1.5em 0 1em;line-height: 2.5em;display:block;overflow: hidden;
   word-wrap: no-break;
   white-space:nowrap;
@@ -66,7 +66,7 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
   display:block;text-align:center;margin: 0.5em 0; cursor:pointer;
   border: 2px solid #222;
-  background: black; /* Old browsers */
+  background: #070; /* Old browsers */
   color:White;
 
   padding: .3em 10px;
@@ -87,10 +87,10 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
   user-drag: none;
 }
 .button:hover {
-    background: #444; /* Old browsers */
+    background: #0a0; /* Old browsers */
    }
 .button:active {
-   background: 777;
+   background: #060;
    }
 
 
@@ -198,13 +198,13 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
 
 .in, .out {
   -webkit-animation-timing-function: ease-in-out;
-  -webkit-animation-duration: 950ms;
+  -webkit-animation-duration: 350ms;
   -moz-animation-timing-function: ease-in-out;
-  -moz-animation-duration: 950ms;
+  -moz-animation-duration: 350ms;
   -ms-animation-timing-function: ease-in-out;
-  -ms-animation-duration: 950ms;
+  -ms-animation-duration: 350ms;
   -o-animation-timing-function: ease-in-out;
-  -o-animation-duration: 950ms;
+  -o-animation-duration: 350ms;
 }
 
 

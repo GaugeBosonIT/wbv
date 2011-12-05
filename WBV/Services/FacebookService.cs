@@ -23,7 +23,7 @@ namespace WBV.Services
             parameters.description = "ziftly is a service that allows friends to send each other awesome gifts";
             parameters.actions = new
             {
-                name = "View on Zifftly",
+                name = "View on Ziftly",
                 link = link,
             };
 

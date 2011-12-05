@@ -32,13 +32,13 @@
     </div>
   </div>
 
-  <div id="selectrcptpage" data-title="Ziftly - Select Recipient"  class="container bodypage">
-    <div class="header clearfix"><h1>Select Recipient</h1></div>
+  <div id="selectrcptpage" data-title="Ziftly - Who is the gift for?"  class="container bodypage">
+    <div class="header clearfix"><h1>Who is the gift for?</h1></div>
     <div class="content">
-      <h1 style="text-align:center">Select person to be gifted!</h1>
+      <h1 style="text-align:center;margin-top:1em;">Select your friend</h1>
       
-      <div style="margin-top:4em;text-align:center">Pick any one from below:</div>
-      <ul class="listview" id="recipientlist-items">
+      
+      <ul class="listview" id="recipientlist-items" style="margin-top:1em;">
         <li>LOADING!!!!!!!!!!</li>
       </ul>
     </div>
@@ -48,13 +48,11 @@
   </div>
 
 
-  <div id="selectgiftpage" data-title="Ziftly - Select Gift"  class="container bodypage">
-    <div class="header clearfix"><h1>Select Gift</h1></div>
+  <div id="selectgiftpage" data-title="Ziftly - What's your gift?"  class="container bodypage">
+    <div class="header clearfix"><h1>What's your gift?</h1></div>
     <div class="content">
-      <h1 style="text-align:center">Select gift to give!</h1>
-      
-      <div style="margin-top:4em;text-align:center">Pick any one from below:</div>
-      <ul class="listview" id="giftsuggestionslist-items">
+      <h1 style="text-align:center;margin-top:1em;">Choose item</h1>
+      <ul class="listview" id="giftsuggestionslist-items" style="margin-top:1em;">
         <li>LOADING!!!!!!!!!!</li>
       </ul>
     </div>
@@ -82,15 +80,15 @@
     </div>
   </div>
 
-  <div id="sentsuccesspage" data-title="Ziftly - Sent Successfully"  class="container bodypage">
-    <div class="header clearfix"><h1>Sent successfully</h1></div>
+  <div id="sentsuccesspage" data-title="Ziftly - Gift Sent Successfully"  class="container bodypage">
+    <div class="header clearfix"><h1>Gift Sent Successfully</h1></div>
     <div class="content">
       
       <div style="margin-top:1em;text-align:center">
-        The gift has been sent to: <span class="recipientname"></span>!
+        <span class="recipientname"></span> is going to love your <span class="giftname"></span>!
       </div>
       <div style="margin-top:1em;text-align:center">
-        Explanation of what has been done, achieved and how to proceed!
+        We will email you as soon as they have got it.
       </div>
       <div style="margin-top:4em">
         <p><a href="#home" class="button first last returnhome">Back to Start</a></p>
@@ -148,13 +146,13 @@
   </a>
 </script>
 <script type="text/template" id="gift-display-template">
-    <li><h1>Give</h1></li>
+    <li><h1>Send</h1></li>
     <li>
       <span class="listbutton deactive">
-          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= recipient.pic_square %>"/><%= recipient.name %> (<%= recipient.birthday_date %>)</span>
+          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= recipient.pic_square %>"/><%= recipient.name %></span>
       </span>
     </li>
-    <li><h1>a</h1></li>
+    <li><h1>an awesome</h1></li>
     <li>
       <span class="listbutton deactive">
           <span class="label first last"><%= product.name %></span>
@@ -163,16 +161,15 @@
 </script>
 
 <script type="text/template" id="gift-redeem-display-template">
-    <li><h1>You've received this gift:</h1></li>
-    <li>
-      <span class="listbutton deactive">
-          <span class="label first last"><%= product.name %></span>
-      </span>
-    </li>
-    <li><h1>from</h1></li>
     <li>
       <span class="listbutton deactive">
           <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= sender.pic_square %>"/><%= sender.name %></span>
+      </span>
+    </li>
+    <li><h1>has sent you an awesome</h1></li>
+    <li>
+      <span class="listbutton deactive">
+          <span class="label first last"><%= product.name %></span>
       </span>
     </li>
 </script>

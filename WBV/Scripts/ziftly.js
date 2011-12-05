@@ -176,6 +176,7 @@ ziftly = function (fbaccessToken, gift_json) {
     el: $('#sentsuccesspage')
     , render: function (gift) {
       this.$(".recipientname").html(gift.recipient.name);
+      this.$(".giftname").html(gift.product.name);
       App.navigator.to(5);
     }
   });
@@ -331,7 +332,7 @@ ziftly = function (fbaccessToken, gift_json) {
       else listRouter.navigate("home", true);
     }
     , giftView: function () {
-      if (App.auth_handler.isLoggedIn()) App.giftsuggestions.render();
+      if (App.auth_handler.isLoggedIn() && App.gift.recipient) App.giftsuggestions.render();
       else listRouter.navigate("home", true);
     }
     , sendView: function () {
