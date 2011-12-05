@@ -25,7 +25,8 @@ _.extend(window.sprints8, {
     this.current_page = 0;
     this.to = function (n) {
       window.scrollTo(0, 1);
-      var reverseClass = (this.current_page > n) ? " reverse" : ""
+      if (n != this.current_page){
+        var reverseClass = (this.current_page > n) ? " reverse" : ""
                   , pages = $("#root > .container")
                   , frompage = $(pages.get(this.current_page))
                   , topage = $(pages.get(n))
@@ -37,17 +38,18 @@ _.extend(window.sprints8, {
                     topage.unbind('animationend');
                     topage.unbind('oAnimationEnd');
                   };
-      if (window.support['cssTransitions']) {
-        topage.bind('webkitAnimationEnd', transEnd, this);
-        topage.bind('animationend', transEnd, this);
-        topage.bind('oAnimationEnd', transEnd, this);
-        frompage.addClass("slide out" + reverseClass);
-        topage.addClass("slide in " + activePageClass + reverseClass);
-      } else {
-        frompage.removeClass(activePageClass);
-        topage.addClass(activePageClass);
-      }
-      this.current_page = n;
+        if (window.support['cssTransitions']) {
+          topage.bind('webkitAnimationEnd', transEnd, this);
+          topage.bind('animationend', transEnd, this);
+          topage.bind('oAnimationEnd', transEnd, this);
+          frompage.addClass("slide out" + reverseClass);
+          topage.addClass("slide in " + activePageClass + reverseClass);
+        } else {
+          frompage.removeClass(activePageClass);
+          topage.addClass(activePageClass);
+        }
+        this.current_page = n;
+       }
     }
   }
   , ConfigStore: function (key) {
@@ -149,11 +151,11 @@ _.extend(window.sprints8, {
 
     this.verify_user = function (expected_user_id, params) {
       _t.addFBDeferred(function () {
-        if (_t.isLoggedIn()) {
-          var valid_callback = params.valid
+        var valid_callback = params.valid
           , notlogged_in_callback = params.notlogged_in
           , invalid_callback = params.invalid;
 
+        if (_t.isLoggedIn()) {
           FB.api("/me", function (response) {
             if (response.id === expected_user_id) valid_callback();
             else invalid_callback();
