@@ -109,13 +109,7 @@ _.extend(window.sprints8, {
     this.isLoggedIn = function () {
       return this.fbToken && this.fbToken !== 'NOTOKEN';
     };
-    var _t = this
-        , _onSessionChange = function (response) {
-          document.body.className = response.authResponse ? 'connected' : 'not_connected';
-          if (response.authResponse) {
-            console.log(response);
-          }
-        };
+    var _t = this;
     var loadDefs = new sprints8.deferreds(function () { return this.fbDoneLoading }, this);
     this.addFBDeferred = loadDefs.add;
     this.runFBDeferred = loadDefs.run;
@@ -153,16 +147,32 @@ _.extend(window.sprints8, {
       this.runLoginDeferred();
     };
 
+    this.verify_user = function (expected_user_id, params) {
+      _t.addFBDeferred(function () {
+        if (_t.isLoggedIn()) {
+          var valid_callback = params.valid
+          , notlogged_in_callback = params.notlogged_in
+          , invalid_callback = params.invalid;
+
+          FB.api("/me", function (response) {
+            if (response.id === expected_user_id) valid_callback();
+            else invalid_callback();
+          });
+        } else {
+          notlogged_in_callback();
+        }
+      });
+    };
+
     window.fbAsyncInit = function () {
       var channelUrl = document.location.protocol + '//' + document.location.host + "/Scripts/channel.html";
-      FB.init({ appId: app_id, status: true, cookie: true, xfbml: false, channelUrl: channelUrl });
+      FB.init({ appId: app_id, status: true, cookie: true, xfbml: false, channelUrl: channelUrl, oauth: false });
       _t.fbDoneLoading = true;
       var fb = FB.getAccessToken;
       if (_t.isLoggedIn()) {
         FB.getAccessToken = function () { return fb() || _t.fbToken }
         _t.runLoginDeferred();
       }
-      FB.Event.subscribe("auth.sessionChange", _onSessionChange);
       _t.runFBDeferred();
     };
     var e = document.createElement('script');

@@ -1,5 +1,5 @@
 
-ziftly = function (fbaccessToken) {
+ziftly = function (fbaccessToken, gift_json) {
   /* -------------------------------------------- ------ -------------------------------------------- */
   /* -------------------------------------------- MODELS -------------------------------------------- */
   /* -------------------------------------------- ------ -------------------------------------------- */
@@ -11,6 +11,8 @@ ziftly = function (fbaccessToken) {
         return "email not correct";
     }
   });
+
+  window.RedemptionGiftModel = Backbone.Model.extend({});
 
 
   window.FBFriend = Backbone.Model.extend({ defaults: function () { return { name: 'FBFriend 1' }; } });
@@ -171,6 +173,36 @@ ziftly = function (fbaccessToken) {
     }
   });
 
+  window.RedeemView = Backbone.View.extend({
+    el: $('#redeempage')
+    , template: _.template($('#gift-redeem-display-template').html())
+    , initialize: function () {
+      var _t = this;
+      App.auth_handler.verify_user(this.model.get("gift").recipient.facebook_id, {
+        valid: function () {
+          _t.$(".loadingsplashdisplay").addClass("hidden");
+          _t.$(".redeemgift").removeClass("hidden");
+        }
+        , invalid: function () {
+          _t.$(".loadingsplashdisplay").addClass("hidden");
+          _t.$(".pleasegoaway").removeClass("hidden");
+        }
+        , notlogged_in: function () {
+          _t.$(".loadingsplashdisplay").addClass("hidden");
+          _t.$(".fbloginbutton").removeClass("hidden");
+        }
+
+      });
+    }
+    , render: function () {
+      this.$("#gift-redeem-info").html(this.template(this.model.get("gift")));
+      App.navigator.to(6);
+    }
+  });
+
+
+
+
   /* -------------------------------------------- --- -------------------------------------------- */
   /* -------------------------------------------- APP -------------------------------------------- */
   /* -------------------------------------------- --- -------------------------------------------- */
@@ -203,7 +235,7 @@ ziftly = function (fbaccessToken) {
       listRouter.navigate("friend", true);
     }
     , showSuccess: function () {
-      if (_.keys(this.gift).length>0) {
+      if (_.keys(this.gift).length > 0) {
         new SentSuccessView().render(this.gift);
         this.gift = {};
       } else {
@@ -218,7 +250,11 @@ ziftly = function (fbaccessToken) {
       }
     }
     , reset: function () {
-      this.render();
+      if (gift_json) {
+        this.redemption_view = new RedeemView({ model: new RedemptionGiftModel({ gift: JSON.parse(gift_json) }) }).render();
+      } else {
+        this.render();
+      }
     }
     , fbLogin: function () {
       var _t = this;
