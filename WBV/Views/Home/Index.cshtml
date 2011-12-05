@@ -137,7 +137,7 @@
 
 <script type="text/template" id="gift-listitem-template">
   <a class="listbutton">
-    <span class="label first last"><%= name %></span><span class="rarrow">&raquo</span>
+    <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= picture %>"/><%= name %></span><span class="rarrow">&raquo</span>
   </a>
 </script>
 <script type="text/template" id="friend-listitem-template">
@@ -155,7 +155,7 @@
     <li><h1>an awesome</h1></li>
     <li>
       <span class="listbutton deactive">
-          <span class="label first last"><%= product.name %></span>
+          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= product.picture %>"/><%= product.name %></span>
       </span>
     </li>
 </script>
@@ -163,13 +163,13 @@
 <script type="text/template" id="gift-redeem-display-template">
     <li>
       <span class="listbutton deactive">
-          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= sender.pic_square %>"/><%= sender.name %></span>
+          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= sender.picture %>"/><%= sender.name %></span>
       </span>
     </li>
     <li><h1>has sent you an awesome</h1></li>
     <li>
       <span class="listbutton deactive">
-          <span class="label first last"><%= product.name %></span>
+          <span class="label first last"><img class="floatLeft" style="margin-right:1em;" src="<%= product.picture %>"/><%= product.name %></span>
       </span>
     </li>
 </script>
