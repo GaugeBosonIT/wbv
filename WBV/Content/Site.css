@@ -4,7 +4,7 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
 
 .container {position:absolute;width:100%;top:0;left:0;display:none;min-height:100%;}
 .container.active-page {display:block;}
-.header {color:White;text-align:center;background-color:#7d7d7d;}
+.header {color:White;text-align:center;background-color:#555;}
 .header h1 {margin: 0 2em;}
 .footer{position: absolute;bottom: 0em;left: 0;width: 100%;color: white;text-align: center;height: 2em;line-height: 2em;background: #555;text-shadow: 0 1px 1px rgba(0, 0, 0, .8);}
 .footer > div {padding: 1em}
