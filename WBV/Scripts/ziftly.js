@@ -43,9 +43,13 @@ ziftly = function (fbaccessToken, gift_json) {
       } else {
         console.log("Dummy fetch gift Suggestions from Server");
         var giftlist = [];
-        for (var i = 0; i < 10; i++) {
-          giftlist.push({ name: "Gift from Server " + i, id: i });
-        }
+        giftlist.push({ name: "Restaurant Ticket", id: 1 });
+        giftlist.push({ name: "Restaurant Ticket: Burger King", id: 2 });
+        giftlist.push({ name: "Restaurant Ticket: McDonalds", id: 3 });
+        giftlist.push({ name: "Restaurant Ticket: KFC", id: 4 });
+        giftlist.push({ name: "Restaurant Ticket: Due Forni", id: 5 });
+        giftlist.push({ name: "Restaurant Ticket: The Mexican", id: 6 });
+        giftlist.push({ name: "Restaurant Ticket: The Ballroom", id: 7 });
         options.success(giftlist, 'success', {});
       }
     }
@@ -168,7 +172,7 @@ ziftly = function (fbaccessToken, gift_json) {
   window.SentSuccessView = Backbone.View.extend({
     el: $('#sentsuccesspage')
     , render: function (gift) {
-      this.$(".recipientemail").html(gift.email);
+      this.$(".recipientname").html(gift.recipient.name);
       App.navigator.to(5);
     }
   });
