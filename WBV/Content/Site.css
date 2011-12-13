@@ -29,6 +29,7 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
   -o-text-overflow: ellipsis;
 }
 .listview a:hover span {color:#aaa}
+.listview .listbutton .label img {width:50px;height:50px}
 .rarrow { font-size: 2.5em;line-height: 0.8em;position: absolute;right: 0.2em;top: 0;}
 .first {
   -webkit-border-top-left-radius: 8px !important;
@@ -92,7 +93,7 @@ body {font: 16px/1.231 sans-serif;min-height:100%;overflow-x:hidden;}
 .button:active {
    background: #060;
    }
-
+.buttonplaceholder {text-align: center;display: block;}
 
 .error {display: block;color: red;text-shadow: 0 1px 1px rgba(0, 0, 0, .4);font-weight: bold;}
 .hidden {display:none !important}

@@ -43,13 +43,13 @@ ziftly = function (fbaccessToken, gift_json) {
       } else {
         console.log("Dummy fetch gift Suggestions from Server");
         var giftlist = [];
-        giftlist.push({ name: "Restaurant Ticket", id: 1 });
-        giftlist.push({ name: "Restaurant Ticket: Burger King", id: 2 });
-        giftlist.push({ name: "Restaurant Ticket: McDonalds", id: 3 });
-        giftlist.push({ name: "Restaurant Ticket: KFC", id: 4 });
-        giftlist.push({ name: "Restaurant Ticket: Due Forni", id: 5 });
-        giftlist.push({ name: "Restaurant Ticket: The Mexican", id: 6 });
-        giftlist.push({ name: "Restaurant Ticket: The Ballroom", id: 7 });
+        giftlist.push({ name: "Restaurant Ticket", picture:"http://stockfresh.com/files/c/ccaetano/x/60/475343_21460906.jpg", id: 1 });
+        giftlist.push({ name: "Restaurant Ticket: Burger King", picture:"http://stockfresh.com/files/c/ccaetano/x/60/475343_21460906.jpg", id: 2 });
+        giftlist.push({ name: "Restaurant Ticket: McDonalds", picture:"http://stockfresh.com/files/c/ccaetano/x/60/475343_21460906.jpg", id: 3 });
+        giftlist.push({ name: "Restaurant Ticket: KFC", picture:"http://stockfresh.com/files/c/ccaetano/x/60/475343_21460906.jpg", id: 4 });
+        giftlist.push({ name: "Restaurant Ticket: Due Forni", picture:"http://stockfresh.com/files/c/ccaetano/x/60/475343_21460906.jpg", id: 5 });
+        giftlist.push({ name: "Restaurant Ticket: The Mexican", picture:"http://stockfresh.com/files/c/ccaetano/x/60/475343_21460906.jpg", id: 6 });
+        giftlist.push({ name: "Restaurant Ticket: The Ballroom", picture:"http://stockfresh.com/files/c/ccaetano/x/60/475343_21460906.jpg", id: 7 });
         options.success(giftlist, 'success', {});
       }
     }
@@ -158,14 +158,14 @@ ziftly = function (fbaccessToken, gift_json) {
     }
     , sendGift: function () {
       var _t = this, button = _t.$(".sendgiftbutton"), button_text = button.html()
-      button.html('<img src="/Content/loader.gif"/>').removeClass("sendgiftbutton");
+      button.html('<img src="/Content/loader.gif" style="top: 4px;position: relative;"/>').addClass("buttonplaceholder").removeClass("sendgiftbutton button");
 
       this.model.get('gift').recipient.email = this.$("#rcpt-emailaddress").val();
       this.model.save({}, { error: function (model, error) {
         _t.$("#rcpt-emailaddress").after('<span class="error">' + error + '</span>')
       }, success: function () {
         $(".error", _t.$("#rcpt-emailaddress").parentNode).remove();
-        button.html(button_text).addClass("sendgiftbutton");
+        button.html(button_text).addClass("sendgiftbutton button").removeClass("buttonplaceholder");
         listRouter.navigate("sent", true);
       }
       });
