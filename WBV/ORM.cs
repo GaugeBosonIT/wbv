@@ -10,14 +10,13 @@ using System.IO;
 using System.Xml;
 using System.Text;
 using WBV.Interfaces;
-using log4net;
-using log4net.Config;
+using NLog;
 
 namespace WBV.DataMapper
 {
     public class orm
     {
-        private static readonly ILog log = LogManager.GetLogger("orm");
+        private static readonly Logger log = LogManager.GetLogger("orm");
         private IData _dataConnector;
 
         public orm(IData dc)

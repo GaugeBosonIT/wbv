@@ -7,8 +7,7 @@ using System.ServiceModel.Web;
 using WBV.Models;
 using WBV.Services;
 using WBV.Interfaces;
-using log4net;
-using log4net.Config;
+using NLog; 
 using WBV.DataMapper;
 using Newtonsoft.Json;
 using System.ServiceModel;
@@ -19,7 +18,7 @@ namespace WBV.Controllers
 
     public class GiftController : Controller
     {
-        private static readonly ILog log = LogManager.GetLogger("GiftController");
+        private static readonly Logger log = LogManager.GetLogger("GiftController");
         public IData _data;
         public ISession _session;
         public GiftController(ISession session, IData data)

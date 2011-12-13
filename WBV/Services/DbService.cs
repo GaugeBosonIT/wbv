@@ -10,15 +10,14 @@ using System.Collections;
 using System.Configuration;
 using System.Xml;
 using WBV.Interfaces;
-using log4net;
-using log4net.Config;
+using NLog;
 
 
 namespace WBV.DataAccess
 {
     public class DataService : IData
     {
-        private static readonly ILog log = LogManager.GetLogger("DataService");
+        private static readonly Logger log = LogManager.GetLogger("DataService");
         public SqlConnection getPooledConnection(SqlConnection sConn)
         {
             try

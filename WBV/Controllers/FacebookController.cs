@@ -9,14 +9,13 @@ using WBV.Models;
 using WBV.Models.Facebook;
 using WBV.Interfaces;
 using WBV.DataMapper;
-using log4net;
-using log4net.Config;
+using NLog;
 
 namespace WBV.Controllers
 {
     public class FacebookController : Controller
     {
-        private static readonly ILog log = LogManager.GetLogger("UserController");
+        private static readonly Logger log = LogManager.GetLogger("UserController");
         public IData _data;
         public ISession _session; 
         public FacebookController(ISession session, IData data )

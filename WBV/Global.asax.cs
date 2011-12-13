@@ -10,6 +10,7 @@ using WBV.Interfaces;
 using WBV.Models;
 using WBV.Services;
 using WBV.Models.Facebook;
+using NLog;
 
 namespace WBV
 {
@@ -60,6 +61,7 @@ namespace WBV
             var kernel = new StandardKernel();
             kernel.Bind<IData>().To<DataService>();
             kernel.Bind<IFacebookUser>().To<FacebookUser>();
+
             kernel.Bind<ISession>().To<SessionService>()
                                     .InRequestScope()
                                    .WithConstructorArgument("context", ninjectContext => new HttpContextWrapper(HttpContext.Current));

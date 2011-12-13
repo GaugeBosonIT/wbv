@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using WBV.Interfaces;
 using WBV.Models;
-using log4net;
-using log4net.Config;
+using NLog;
 
 namespace WBV.Services
 {
@@ -13,7 +12,7 @@ namespace WBV.Services
     {
         public HttpContextBase _context { get; set; }
       
-        private static readonly ILog log = LogManager.GetLogger("SessionService");
+        private static readonly Logger log = LogManager.GetLogger("SessionService");
 
         public SessionService(HttpContextBase context)
         {

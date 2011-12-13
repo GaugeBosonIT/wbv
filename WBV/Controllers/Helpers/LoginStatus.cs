@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WBV.Interfaces;
-using log4net;
-using log4net.Config;
+using NLog;
 using WBV.Models;
 using WBV.DataMapper;
 
@@ -12,12 +11,14 @@ namespace WBV.Controllers.Helpers
 {
     public static class LoginStatus
     {
-        private static readonly ILog log = LogManager.GetLogger("LoginStatus");
+        private static Logger log = LogManager.GetCurrentClassLogger();
         public static string accessToken(ISession _session, IData _data)
         {
             string _accessToken;
             try
             {
+               
+
                 if (_session.user == null)
                 {
                     if (_session.userToken == "" || _session.userToken == null)

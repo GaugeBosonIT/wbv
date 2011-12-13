@@ -6,8 +6,7 @@ using System.Web.Mvc;
 using WBV.Interfaces;
 using WBV.DataMapper;
 using WBV.Models;
-using log4net;
-using log4net.Config;
+using NLog;
 using WBV.Controllers.Helpers;
 
 
@@ -15,7 +14,7 @@ namespace WBV.Controllers
 {
     public class HomeController : Controller
     {
-        private static readonly ILog log = LogManager.GetLogger("HomeController");
+        private static readonly Logger log = LogManager.GetLogger("HomeController");
         public ISession _session;
         public IData _data;
 
